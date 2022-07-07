@@ -1,1 +1,3 @@
-{}
+{
+    "currentWeatherInCity": "دمای هوای کنونی $t(common:{{city}})، {{weather}} درجه سانتیگراد می‌باشد"
+}
