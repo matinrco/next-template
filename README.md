@@ -2,33 +2,58 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+-   Install all dependencies:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+    ```bash
+    yarn install
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+-   Setup or check `.env.production` or `.env.development` according to environment or overwrite them by creating `.env.production.local` or `.env.development.local`.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+-   For development server, run:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+    ```bash
+    yarn dev
+    ```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Learn More
+-   For production, build with:
 
-To learn more about Next.js, take a look at the following resources:
+    ```bash
+    yarn build
+    ```
 
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    Then, to serve application:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    ```bash
+    yarn start
+    ```
 
-## Deploy on Vercel
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## what's included ?
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-   nextjs 12
+-   react 18
+-   i18n
+    -   with next-i18next
+    -   ssr handling
+    -   sample translations
+-   redux toolkit
+    -   store setup
+    -   sample slice & structure, definition & consuming
+    -   next-redux-wrapper for ssr handling (+setup)
+    -   data fetching
+        -   with rtk query
+        -   setup with sample endpoints, definition & consuming (in components/thunks/getServerSideProps)(query & mutations)
+        -   type definition
+-   [mantine](https://github.com/mantinedev/mantine)
+    -   as a bootstrap replacement
+    -   ssr/rtl handled
+    -   emotion styling (with stylis rtl plugin)
+    -   theme context
+-   sass module
+-   prettier & eslint
+-   vazirmatn as default font
+-   working with cookies with cookies-next
