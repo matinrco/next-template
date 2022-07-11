@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 -   Install all dependencies:
 
-    ```bash
+    ```
     yarn install
     ```
 
@@ -12,7 +12,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 -   For development server, run:
 
-    ```bash
+    ```
     yarn dev
     ```
 
@@ -20,13 +20,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 -   For production, build with:
 
-    ```bash
+    ```
     yarn build
     ```
 
     Then, to serve application:
 
-    ```bash
+    ```
     yarn start
     ```
 
