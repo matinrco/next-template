@@ -53,6 +53,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
     -   ssr/rtl handled
     -   emotion styling (with stylis rtl plugin)
     -   theme context
+        -   theme override sample code + type definition
+        -   custom theme attribute definition + types
 -   sass module
 -   prettier & eslint
 -   vazirmatn as default font
