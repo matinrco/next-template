@@ -66,6 +66,45 @@ function CustomApp({
                         `;
                     }
                 })(),
+                /**
+                 * sample custom colors.
+                 * override or extend default theme colors.
+                 * to apply TS types check additional.d.ts in project root.
+                 */
+                // colors: {
+                //     primary: [
+                //         "#7AD1DD",
+                //         "#5FCCDB",
+                //         "#44CADC",
+                //         "#2AC9DE",
+                //         "#1AC2D9",
+                //         "#11B7CD",
+                //         "#09ADC3",
+                //         "#0E99AC",
+                //         "#128797",
+                //         "#147885",
+                //     ],
+                //     secondary: [
+                //         "#F0BBDD",
+                //         "#ED9BCF",
+                //         "#EC7CC3",
+                //         "#ED5DB8",
+                //         "#F13EAF",
+                //         "#F71FA7",
+                //         "#FF00A1",
+                //         "#E00890",
+                //         "#C50E82",
+                //         "#AD1374",
+                //     ],
+                // },
+                /**
+                 * sample custom theme attributes.
+                 * define custom theme parameters here.
+                 * to apply TS types check additional.d.ts in project root.
+                 */
+                // other: {
+                //     customProperty: "sample string",
+                // },
             }}
             emotionOptions={(() => {
                 switch (direction) {
