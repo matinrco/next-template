@@ -1,11 +1,13 @@
 import React, { ReactElement } from "react";
 import Link from "next/link";
 import { useTranslation, Trans } from "next-i18next";
+import { Input, Grid, Container, ActionIcon, Tooltip } from "@mantine/core";
+import { BsQuestionCircle } from "react-icons/bs";
 import { useAppDispatch, useAppSelector } from "src/services/store";
 import { actions } from "src/services/slices/shared";
 import { api } from "src/services/api";
 
-function Home(): ReactElement {
+const Home = (): ReactElement => {
     const { t } = useTranslation(["common", "home"]);
     const dispatch = useAppDispatch();
     const { increment, updateCity, createFooWithThunk } = actions;
@@ -27,6 +29,38 @@ function Home(): ReactElement {
     return (
         <div>
             this is home
+            <hr />
+            <Container style={{ marginTop: 50, marginBottom: 50 }}>
+                <Grid>
+                    <Grid.Col span={4} />
+                    <Grid.Col span={4}>
+                        <Input
+                            size="lg"
+                            styles={(theme) => ({
+                                input: {
+                                    backgroundColor: "#f6f6f8",
+                                    borderColor: "transparent",
+                                    fontSize: theme.fontSizes.sm,
+                                    borderRadius: 35,
+                                },
+                            })}
+                            placeholder="رمز یکبار مصرف"
+                            rightSection={
+                                <Tooltip
+                                    label="کلمه عبور به شما پیامک خواهد شد"
+                                    position="top"
+                                    placement="center"
+                                >
+                                    <ActionIcon>
+                                        <BsQuestionCircle />
+                                    </ActionIcon>
+                                </Tooltip>
+                            }
+                        />
+                    </Grid.Col>
+                    <Grid.Col span={4} />
+                </Grid>
+            </Container>
             <hr />
             {isTehranWeatherSuccess && (
                 <>
@@ -101,6 +135,6 @@ function Home(): ReactElement {
             <hr />
         </div>
     );
-}
+};
 
 export default Home;
