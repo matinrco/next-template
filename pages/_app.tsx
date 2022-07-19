@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { ReactElement, useEffect } from "react";
 import { GetServerSidePropsContext } from "next";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
@@ -11,11 +11,11 @@ import { wrapper } from "src/services/store";
 import { getDirection } from "src/services/localeUtils";
 import "src/services/global.scss";
 
-function CustomApp({
+const CustomApp = ({
     Component,
     pageProps,
     colorScheme,
-}: AppProps & { colorScheme: ColorScheme | undefined }) {
+}: AppProps & { colorScheme: ColorScheme | undefined }): ReactElement => {
     const preferredColorScheme = useColorScheme(colorScheme);
     const router = useRouter();
     const direction = getDirection(router?.locale || "");
@@ -121,7 +121,7 @@ function CustomApp({
             <Component {...pageProps} />
         </MantineProvider>
     );
-}
+};
 
 CustomApp.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
     colorScheme: getCookie("color-scheme", ctx),
