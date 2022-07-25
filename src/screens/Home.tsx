@@ -49,7 +49,7 @@ const Home = (): ReactElement => {
                                 <Tooltip
                                     label="کلمه عبور به شما پیامک خواهد شد"
                                     position="top"
-                                    placement="center"
+                                    withArrow
                                 >
                                     <ActionIcon>
                                         <BsQuestionCircle />

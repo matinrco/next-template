@@ -3,7 +3,11 @@ import { GetServerSidePropsContext } from "next";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { getCookie, setCookie } from "cookies-next";
-import { MantineProvider, ColorScheme } from "@mantine/core";
+import {
+    MantineProvider,
+    ColorScheme,
+    createEmotionCache,
+} from "@mantine/core";
 import { useColorScheme } from "@mantine/hooks";
 import rtlPlugin from "stylis-plugin-rtl";
 import { appWithTranslation } from "next-i18next";
@@ -19,6 +23,13 @@ const CustomApp = ({
     const preferredColorScheme = useColorScheme(colorScheme);
     const router = useRouter();
     const direction = getDirection(router?.locale || "");
+    const rtlEmotionCache = createEmotionCache({
+        key: "mantine-rtl",
+        stylisPlugins: [rtlPlugin],
+    });
+    const ltrEmotionCache = createEmotionCache({
+        key: "mantine-ltr",
+    });
 
     useEffect(() => {
         document.querySelector("html")?.setAttribute("dir", direction);
@@ -106,15 +117,12 @@ const CustomApp = ({
                 //     customProperty: "sample string",
                 // },
             }}
-            emotionOptions={(() => {
+            emotionCache={(() => {
                 switch (direction) {
                     case "rtl":
-                        return {
-                            key: "mantine-rtl",
-                            stylisPlugins: [rtlPlugin],
-                        };
+                        return rtlEmotionCache;
                     case "ltr":
-                        return { key: "mantine" };
+                        return ltrEmotionCache;
                 }
             })()}
         >
