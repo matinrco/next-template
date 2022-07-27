@@ -13,6 +13,7 @@ import rtlPlugin from "stylis-plugin-rtl";
 import { appWithTranslation } from "next-i18next";
 import { wrapper } from "src/services/store";
 import { getDirection } from "src/services/localeUtils";
+import RouterTransition from "src/screens/shared/RouterTransition";
 import "src/services/global.scss";
 
 const CustomApp = ({
@@ -126,6 +127,7 @@ const CustomApp = ({
                 }
             })()}
         >
+            <RouterTransition />
             <Component {...pageProps} />
         </MantineProvider>
     );

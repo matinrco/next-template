@@ -15,6 +15,7 @@
         "@mantine/core": "^5.0.0",
         "@mantine/hooks": "^5.0.0",
         "@mantine/next": "^5.0.0",
+        "@mantine/nprogress": "^5.0.0",
         "@reduxjs/toolkit": "^1.8.3",
         "cookies-next": "^2.1.1",
         "next": "12.2.3",
