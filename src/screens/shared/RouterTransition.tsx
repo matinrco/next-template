@@ -23,7 +23,7 @@ const RouterTransition = (): ReactElement => {
             router.events.off("routeChangeComplete", handleComplete);
             router.events.off("routeChangeError", handleComplete);
         };
-    }, [router.asPath]);
+    }, [router]);
 
     return <NavigationProgress />;
 };
