@@ -35,7 +35,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## what's included ?
 
 -   nextjs 12
--   react 17 (FOUC happened with 18 😐)
+-   react 17 (18 is also ok)
 -   i18n
     -   with next-i18next
     -   ssr handling
