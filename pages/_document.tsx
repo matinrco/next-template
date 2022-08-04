@@ -5,32 +5,17 @@ import Document, {
     Main,
     NextScript,
 } from "next/document";
-import { createEmotionCache } from "@mantine/core";
 import { ServerStyles, createStylesServer } from "@mantine/next";
-import rtlPlugin from "stylis-plugin-rtl";
 import { getDirection } from "src/services/localeUtils";
+import { ltrEmotionCache, rtlEmotionCache } from "src/services/emotionCache";
+
+const ltrStylesServer = createStylesServer(ltrEmotionCache);
+const rtlStylesServer = createStylesServer(rtlEmotionCache);
 
 class CustomDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
         const initialProps = await Document.getInitialProps(ctx);
         const direction = getDirection(ctx.locale);
-        const rtlCache = createEmotionCache({
-            key: "mantine-rtl",
-            stylisPlugins: [rtlPlugin],
-        });
-        const ltrCache = createEmotionCache({
-            key: "mantine-ltr",
-        });
-        const stylesServer = createStylesServer(
-            (() => {
-                switch (direction) {
-                    case "rtl":
-                        return rtlCache;
-                    case "ltr":
-                        return ltrCache;
-                }
-            })(),
-        );
 
         return {
             ...initialProps,
@@ -38,7 +23,14 @@ class CustomDocument extends Document {
                 initialProps.styles,
                 <ServerStyles
                     html={initialProps.html}
-                    server={stylesServer}
+                    server={(() => {
+                        switch (direction) {
+                            case "rtl":
+                                return rtlStylesServer;
+                            case "ltr":
+                                return ltrStylesServer;
+                        }
+                    })()}
                     key="styles"
                 />,
             ],

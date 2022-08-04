@@ -3,16 +3,12 @@ import { GetServerSidePropsContext } from "next";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { getCookie, setCookie } from "cookies-next";
-import {
-    MantineProvider,
-    ColorScheme,
-    createEmotionCache,
-} from "@mantine/core";
+import { MantineProvider, ColorScheme, Global } from "@mantine/core";
 import { useColorScheme } from "@mantine/hooks";
-import rtlPlugin from "stylis-plugin-rtl";
 import { appWithTranslation } from "next-i18next";
 import { wrapper } from "src/services/store";
 import { getDirection } from "src/services/localeUtils";
+import { ltrEmotionCache, rtlEmotionCache } from "src/services/emotionCache";
 import RouterTransition from "src/screens/shared/RouterTransition";
 import "src/services/global.scss";
 
@@ -24,13 +20,6 @@ const CustomApp = ({
     const preferredColorScheme = useColorScheme(colorScheme);
     const router = useRouter();
     const direction = getDirection(router?.locale || "");
-    const rtlEmotionCache = createEmotionCache({
-        key: "mantine-rtl",
-        stylisPlugins: [rtlPlugin],
-    });
-    const ltrEmotionCache = createEmotionCache({
-        key: "mantine-ltr",
-    });
 
     useEffect(() => {
         document.querySelector("html")?.setAttribute("dir", direction);
@@ -128,6 +117,13 @@ const CustomApp = ({
             })()}
         >
             <RouterTransition />
+            <Global
+                styles={(theme) => ({
+                    html: {
+                        scrollBehavior: "smooth",
+                    },
+                })}
+            />
             <Component {...pageProps} />
         </MantineProvider>
     );
