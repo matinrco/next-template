@@ -12,6 +12,7 @@
     "dependencies": {
         "@emotion/react": "^11.10.0",
         "@emotion/server": "^11.10.0",
+        "@hassanmojab/react-modern-calendar-datepicker": "^3.1.7",
         "@mantine/carousel": "^5.1.6",
         "@mantine/core": "^5.1.6",
         "@mantine/hooks": "^5.1.6",

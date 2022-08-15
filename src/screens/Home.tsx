@@ -1,15 +1,32 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useTranslation, Trans } from "next-i18next";
-import { Input, Grid, Container, ActionIcon, Tooltip } from "@mantine/core";
+import {
+    Input,
+    Grid,
+    Container,
+    ActionIcon,
+    Tooltip,
+    TextInput,
+    Box,
+} from "@mantine/core";
+import DatePicker, {
+    DayValue,
+} from "@hassanmojab/react-modern-calendar-datepicker";
 import { BsQuestionCircle } from "react-icons/bs";
+import NoSSR from "src/screens/shared/NoSSR";
 import { useAppDispatch, useAppSelector } from "src/services/store";
 import { actions } from "src/services/slices/shared";
 import { api } from "src/services/api";
+import { useFixNumbers } from "src/services/hooks/fixNumbers";
 
 const Home = (): ReactElement => {
+    const router = useRouter();
     const { t } = useTranslation(["common", "home"]);
     const dispatch = useAppDispatch();
+    const fixNumbers = useFixNumbers();
+    const [selectedDate, setSelectedDate] = useState<DayValue>(null);
     const { increment, updateCity, createFooWithThunk } = actions;
     const { counter, city } = useAppSelector((state) => state.shared);
 
@@ -31,17 +48,17 @@ const Home = (): ReactElement => {
             this is home
             <hr />
             <Container style={{ marginTop: 50, marginBottom: 50 }}>
-                <Grid>
+                <Grid mb="md">
                     <Grid.Col span={4} />
                     <Grid.Col span={4}>
                         <Input
                             size="lg"
                             styles={(theme) => ({
                                 input: {
-                                    backgroundColor: "#f6f6f8",
+                                    backgroundColor: theme.colors.gray[1],
                                     borderColor: "transparent",
                                     fontSize: theme.fontSizes.sm,
-                                    borderRadius: 35,
+                                    borderRadius: theme.radius.xl,
                                 },
                             })}
                             placeholder="رمز یکبار مصرف"
@@ -57,6 +74,62 @@ const Home = (): ReactElement => {
                                 </Tooltip>
                             }
                         />
+                    </Grid.Col>
+                    <Grid.Col span={4} />
+                </Grid>
+                <Grid>
+                    <Grid.Col span={4} />
+                    <Grid.Col span={4}>
+                        <NoSSR>
+                            <Box
+                                sx={{
+                                    // fix date picker
+                                    ".DatePicker": {
+                                        display: "block",
+                                        zIndex: 1,
+                                    },
+                                }}
+                            >
+                                <DatePicker
+                                    locale={router?.locale}
+                                    shouldHighlightWeekends
+                                    value={selectedDate}
+                                    onChange={(value) => setSelectedDate(value)}
+                                    renderInput={({ ref }) => (
+                                        <TextInput
+                                            size="lg"
+                                            ref={
+                                                ref as React.Ref<HTMLInputElement>
+                                            }
+                                            placeholder="انتخاب تاریخ"
+                                            value={
+                                                selectedDate
+                                                    ? fixNumbers(
+                                                          selectedDate?.year +
+                                                              "/" +
+                                                              selectedDate?.month +
+                                                              "/" +
+                                                              selectedDate?.day,
+                                                      )
+                                                    : ""
+                                            }
+                                            onChange={() => {}}
+                                            styles={(theme) => ({
+                                                input: {
+                                                    backgroundColor:
+                                                        theme.colors.gray[1],
+                                                    borderColor: "transparent",
+                                                    fontSize:
+                                                        theme.fontSizes.sm,
+                                                    borderRadius:
+                                                        theme.radius.xl,
+                                                },
+                                            })}
+                                        />
+                                    )}
+                                />
+                            </Box>
+                        </NoSSR>
                     </Grid.Col>
                     <Grid.Col span={4} />
                 </Grid>
