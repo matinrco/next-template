@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { HYDRATE } from "next-redux-wrapper";
+import { HYDRATE, Context } from "next-redux-wrapper";
 import { RootState } from "src/services/store";
 import {
     GetWeatherRequest,
@@ -15,13 +15,32 @@ export const api = createApi({
     tagTypes: [],
     baseQuery: fetchBaseQuery({
         baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
-        prepareHeaders: (headers, { getState }) => {
+        credentials: "include",
+        prepareHeaders: (headers, { getState, extra }) => {
             /**
              * you can modify headers here,
              */
             const {} = getState() as RootState;
-            // headers.set("sampleHeader", "sampleValue");
-            return headers;
+            const context = extra as Context;
+
+            if (typeof window !== "undefined") {
+                return headers;
+            } else {
+                let reqCookies: { [key: string]: string } = {};
+                if (
+                    "req" in context &&
+                    context.req &&
+                    "cookies" in context.req &&
+                    context.req.cookies
+                ) {
+                    reqCookies = (context as any).req.cookies;
+                }
+                const cookieValue = Object.entries(reqCookies)
+                    .map(([k, v]) => `${k}=${v}`)
+                    .join("; ");
+                headers.set("cookie", cookieValue);
+                return headers;
+            }
         },
     }),
     extractRehydrationInfo(action, { reducerPath }) {

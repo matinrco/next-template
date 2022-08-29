@@ -1,17 +1,37 @@
-import { configureStore, Action, ThunkAction } from "@reduxjs/toolkit";
+import {
+    configureStore,
+    Action,
+    ThunkAction,
+    ImmutableStateInvariantMiddlewareOptions,
+    SerializableStateInvariantMiddlewareOptions,
+} from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { createWrapper } from "next-redux-wrapper";
+import { createWrapper, Context } from "next-redux-wrapper";
 import { api } from "src/services/api";
 import { reducer as sharedReducer } from "src/services/slices/shared";
 
-export const makeStore = () =>
+interface ThunkOptions<E> {
+    extraArgument: E;
+}
+
+interface DefaultMiddlewareOptions {
+    thunk?: boolean | ThunkOptions<Context>;
+    immutableCheck?: boolean | ImmutableStateInvariantMiddlewareOptions;
+    serializableCheck?: boolean | SerializableStateInvariantMiddlewareOptions;
+}
+
+export const makeStore = (context: Context) =>
     configureStore({
         reducer: {
             [api.reducerPath]: api.reducer,
             shared: sharedReducer,
         },
         middleware: (getDefaultMiddleware) =>
-            getDefaultMiddleware().concat(api.middleware),
+            getDefaultMiddleware<DefaultMiddlewareOptions>({
+                thunk: {
+                    extraArgument: context,
+                },
+            }).concat(api.middleware),
     });
 
 export type AppStore = ReturnType<typeof makeStore>;
