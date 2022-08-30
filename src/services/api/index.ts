@@ -26,14 +26,14 @@ export const api = createApi({
             if (typeof window !== "undefined") {
                 return headers;
             } else {
-                let reqCookies: { [key: string]: string } = {};
+                let reqCookies: Partial<{ [key: string]: string }> = {};
                 if (
                     "req" in context &&
                     context.req &&
                     "cookies" in context.req &&
                     context.req.cookies
                 ) {
-                    reqCookies = (context as any).req.cookies;
+                    reqCookies = context.req.cookies;
                 }
                 const cookieValue = Object.entries(reqCookies)
                     .map(([k, v]) => `${k}=${v}`)
