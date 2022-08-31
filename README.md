@@ -48,6 +48,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
         -   with rtk query
         -   setup with sample endpoints, definition & consuming (in components/thunks/getServerSideProps)(query & mutations)
         -   type definition
+        -   session handling while SSR ing
 -   [mantine](https://github.com/mantinedev/mantine)
     -   as a bootstrap replacement
     -   ssr/rtl handled
