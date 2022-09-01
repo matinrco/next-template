@@ -15,6 +15,7 @@
         "@hassanmojab/react-modern-calendar-datepicker": "^3.1.7",
         "@mantine/carousel": "^5.2.4",
         "@mantine/core": "^5.2.4",
+        "@mantine/form": "^5.2.4",
         "@mantine/hooks": "^5.2.4",
         "@mantine/next": "^5.2.4",
         "@mantine/nprogress": "^5.2.4",
@@ -30,7 +31,8 @@
         "react-redux": "^8.0.2",
         "stylis": "^4.1.1",
         "stylis-plugin-rtl": "^2.1.1",
-        "vazirmatn": "^33.0.3"
+        "vazirmatn": "^33.0.3",
+        "yup": "^0.32.11"
     },
     "devDependencies": {
         "@types/node": "18.6.4",
