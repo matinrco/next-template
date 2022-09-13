@@ -1045,6 +1045,16 @@ duplexer2@^0.1.2:
   dependencies:
     readable-stream "^2.0.2"
 
+embla-carousel-auto-height@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/embla-carousel-auto-height/-/embla-carousel-auto-height-7.0.3.tgz#d02aa92a07f763e45374c183de55997fcd0cdd3e"
+  integrity sha512-WXXnQo9ULuel0/RK1JYGhdsTwcH4CiGgyGMWXlYYlN8/ZR3V9X2rjeB+LqO4zMyI2hvRmro4gvpGvG5cBX9UNw==
+
+embla-carousel-autoplay@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/embla-carousel-autoplay/-/embla-carousel-autoplay-7.0.3.tgz#27c948875bd4866c6fa67526d1edd3232b513a13"
+  integrity sha512-cFysSJCzQ0+OvPkw0xb4xzVQlcr1f1Rbp6DhU3cGaIbk9XTPEvalvdUEyyrng4wiam/K7Zq5gjj6D9HU2fN1lg==
+
 embla-carousel-react@^7.0.3:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/embla-carousel-react/-/embla-carousel-react-7.0.3.tgz#343c972a1ac5869acba3d6e9c7eeb3bd27f7e335"
@@ -1052,7 +1062,7 @@ embla-carousel-react@^7.0.3:
   dependencies:
     embla-carousel "7.0.3"
 
-embla-carousel@7.0.3:
+embla-carousel@7.0.3, embla-carousel@^7.0.3:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/embla-carousel/-/embla-carousel-7.0.3.tgz#7173a0f27b697a42266d34764c657eeba85bd7b5"
   integrity sha512-Zo8E/qNb8J7n/jcfQxPrfdARlTgsMvmcXshn3J/2oxWVLwL/3N4cAhuqLQiud/oCjZzl+A8maCJDe2PDVlc/cA==
