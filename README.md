@@ -34,7 +34,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## what's included ?
 
--   nextjs 12
+-   nextjs 13
 -   react 18
 -   i18n
     -   with next-i18next

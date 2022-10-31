@@ -199,11 +199,11 @@ const Home = (): ReactElement => {
             </button>
             <hr />
             <Link href="/" locale="en">
-                <a>To EN</a>
+                To EN
             </Link>
             <br />
             <Link href="/" locale="fa">
-                <a>To FA</a>
+                To FA
             </Link>
             <hr />
         </div>
