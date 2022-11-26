@@ -4,7 +4,7 @@
  */
 // import { MantineThemeOther, Tuple, DefaultMantineColor } from "@mantine/core";
 
-// type ExtendedCustomColors = "primary" | "secondary" | DefaultMantineColor;
+// type ExtendedCustomColors = "brand" | DefaultMantineColor;
 
 // declare module "@mantine/core" {
 //     export interface MantineThemeColorsOverride {
