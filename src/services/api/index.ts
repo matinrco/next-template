@@ -57,7 +57,10 @@ export const api = createApi({
             }),
         }),
         getWeather: builder.query<GetWeatherResponse, GetWeatherRequest>({
-            query: ({ city }) => `https://wttr.in/${city}?format=j1`,
+            query: ({ city }) => ({
+                url: `https://wttr.in/${city}?format=j1`,
+                credentials: "omit",
+            }),
         }),
         getWeatherANSI: builder.query<
             GetWeatherANSIResponse,
