@@ -23,24 +23,35 @@ export const api = createApi({
             const {} = getState() as RootState;
             const context = extra as Context;
 
-            if (typeof window !== "undefined") {
-                return headers;
-            } else {
-                let reqCookies: Partial<{ [key: string]: string }> = {};
+            /**
+             * forward all client headers to api when fetching in server side
+             */
+            if (typeof window === "undefined") {
                 if (
                     "req" in context &&
                     context.req &&
-                    "cookies" in context.req &&
-                    context.req.cookies
+                    "headers" in context.req &&
+                    context.req.headers
                 ) {
-                    reqCookies = context.req.cookies;
+                    Object.entries(context.req.headers).map(([k, v]) => {
+                        if (typeof v === "string") {
+                            headers.set(k, v);
+                        }
+                    });
                 }
-                const cookieValue = Object.entries(reqCookies)
-                    .map(([k, v]) => `${k}=${v}`)
-                    .join("; ");
-                headers.set("cookie", cookieValue);
-                return headers;
+                /**
+                 * set host header to api host name instead of client/browser host header.
+                 * if not, reverse proxies can't select upstream correctly.
+                 */
+                try {
+                    const apiBaseUrl = new URL(
+                        process.env.NEXT_PUBLIC_API_BASE_URL || "",
+                    );
+                    headers.set("host", apiBaseUrl.host);
+                } catch (error) {}
             }
+
+            return headers;
         },
     }),
     extractRehydrationInfo(action, { reducerPath }) {
