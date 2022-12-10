@@ -21,11 +21,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
                     .unwrap();
             } catch (error) {}
 
-            /**
-             * you can use:
-             * await Promise.all(api.util.getRunningOperationPromises());
-             * instead of above await...try...catch
-             */
+            // you can use:
+            // await Promise.all(
+            //     store.dispatch(api.util.getRunningQueriesThunk()),
+            // );
+            // instead of above await...try...catch
 
             return {
                 props: {
