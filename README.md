@@ -36,6 +36,14 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 -   nextjs 13
 -   react 18
+-   code quality
+
+    -   typescript
+    -   prettier
+    -   eslint
+    -   husky
+    -   lint-staged
+
 -   i18n
     -   with next-i18next
     -   ssr handling
@@ -57,6 +65,5 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
         -   theme override sample code + type definition
         -   custom theme attribute definition + types
 -   sass module
--   prettier & eslint
 -   vazirmatn as default font
 -   working with cookies with cookies-next
