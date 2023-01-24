@@ -4,9 +4,10 @@ import {
     ThunkAction,
     ImmutableStateInvariantMiddlewareOptions,
     SerializableStateInvariantMiddlewareOptions,
+    createAction,
 } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { createWrapper, Context } from "next-redux-wrapper";
+import { createWrapper, Context, HYDRATE } from "next-redux-wrapper";
 import { api } from "src/services/api";
 import { reducer as sharedReducer } from "src/services/slices/shared";
 
@@ -43,6 +44,8 @@ export type AppThunk<ReturnType = void> = ThunkAction<
     unknown,
     Action<string>
 >;
+
+export const APP_HYDRATE = createAction<RootState>(HYDRATE);
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch = () => useDispatch<AppDispatch>();
