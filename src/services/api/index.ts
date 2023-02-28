@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { HYDRATE, Context } from "next-redux-wrapper";
+import queryString from "query-string";
 import { RootState } from "src/services/store";
 import {
     GetWeatherRequest,
@@ -52,6 +53,9 @@ export const api = createApi({
             }
 
             return headers;
+        },
+        paramsSerializer: (params) => {
+            return queryString.stringify(params);
         },
     }),
     extractRehydrationInfo(action, { reducerPath }) {
