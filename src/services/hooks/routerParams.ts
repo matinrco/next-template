@@ -110,58 +110,6 @@ export const useRouterParams = (options?: UseRouterParamsOptions) => {
     };
 
     /**
-     * It sets query params in the URL to a given value. If it already exists, it
-     * will be overridden. same as setParam but for multiple items
-     * this function needs to be tested!
-     */
-    const setParams = (
-        params: {
-            name: string;
-            value?: string | boolean | number | string[] | boolean[] | number[];
-        }[],
-    ) => {
-        const paramsToBeCleared: string[] = [];
-        const paramsToBeAdded: typeof params = [];
-        params.forEach((param) => {
-            if (!param.value) {
-                paramsToBeCleared.push(param.name);
-            } else {
-                paramsToBeAdded.push(param);
-            }
-        });
-
-        // clear params
-        let newQuery = Object.keys(query).reduce((acc, curr) => {
-            if (paramsToBeCleared.indexOf(curr) === -1) {
-                acc[curr] = query[curr];
-            }
-            return acc;
-        }, {} as ParsedUrlQuery);
-
-        // add new items
-        paramsToBeAdded.forEach((param) => {
-            if (!param.value) {
-                return;
-            }
-            newQuery = {
-                ...newQuery,
-                [param.name]: Array.isArray(param.value)
-                    ? param.value.map((el) => encodeURIComponent(el))
-                    : encodeURIComponent(param.value),
-            };
-        });
-
-        reload(
-            {
-                pathname,
-                query: newQuery,
-            },
-            undefined,
-            { shallow, locale },
-        );
-    };
-
-    /**
      * If no argument is passed, it clears all the query params from the URL.
      * If one or more params are passed as arguments, only those will be cleared
      * from the URL.
@@ -235,6 +183,146 @@ export const useRouterParams = (options?: UseRouterParamsOptions) => {
     };
 
     /**
+     *
+     * "add" : adds query params to the URL string. multiple params with the same name and different values can be added.
+     *
+     * "remove" : removes the provided params with a specific value from the URL.
+     *
+     * "set" : it sets query params in the URL to a given value. If it already exists, it will be overridden.
+     *
+     * "clear" : clear param from url.
+     *
+     * this function is combination of these functions, plus for multiple items and different actions for each:
+     * addParam,
+     * removeParam,
+     * setParam,
+     * clearParam,
+     *
+     * this function needs to be tested!
+     */
+    const updateParams = (
+        params: {
+            action: "add" | "remove" | "set" | "clear";
+            name: string;
+            value?: string | number | boolean | string[] | number[] | boolean[];
+        }[],
+    ) => {
+        let newQuery = { ...query };
+        let isQueryTouched = false;
+
+        params.forEach(({ action, name, value }) => {
+            const { [name]: param, ...rest } = newQuery;
+
+            switch (action) {
+                case "add":
+                    if (Array.isArray(value) || !value) return;
+
+                    if (!param) {
+                        newQuery = {
+                            ...rest,
+                            [name]: encodeURIComponent(value),
+                        };
+                    } else if (Array.isArray(param)) {
+                        if (param.indexOf(encodeURIComponent(value)) > -1)
+                            return;
+                        newQuery = {
+                            ...rest,
+                            [name]: [...param, encodeURIComponent(value)],
+                        };
+                    } else {
+                        if (param === encodeURIComponent(value)) return;
+                        newQuery = {
+                            ...rest,
+                            [name]: [param, encodeURIComponent(value)],
+                        };
+                    }
+
+                    isQueryTouched = true;
+
+                    break;
+                case "remove":
+                    if (!param) return;
+
+                    if (
+                        value &&
+                        Array.isArray(param) &&
+                        !Array.isArray(value)
+                    ) {
+                        newQuery = {
+                            ...rest,
+                            [name]: param.filter(
+                                (element) =>
+                                    element !== encodeURIComponent(value),
+                            ),
+                        };
+                    } else {
+                        newQuery = { ...rest };
+                    }
+
+                    isQueryTouched = true;
+
+                    break;
+                case "set":
+                    if (!value) {
+                        // remove param
+
+                        if (!param) return;
+
+                        if (
+                            value &&
+                            Array.isArray(param) &&
+                            !Array.isArray(value)
+                        ) {
+                            newQuery = {
+                                ...rest,
+                                [name]: param.filter(
+                                    (element) =>
+                                        element !== encodeURIComponent(value),
+                                ),
+                            };
+                        } else {
+                            newQuery = { ...rest };
+                        }
+                    } else {
+                        // set param
+
+                        newQuery = {
+                            ...rest,
+                            [name]: Array.isArray(value)
+                                ? value.map((el) => encodeURIComponent(el))
+                                : encodeURIComponent(value),
+                        };
+                    }
+
+                    isQueryTouched = true;
+
+                    break;
+                case "clear":
+                    if (!param) return;
+
+                    newQuery = { ...rest };
+
+                    isQueryTouched = true;
+
+                    break;
+                default:
+                    break;
+            }
+        });
+
+        if (!isQueryTouched) return;
+
+        reload(
+            {
+                pathname,
+                query: newQuery,
+            },
+            undefined,
+            { shallow, locale },
+        );
+    };
+
+    /**
      * Adds the query param to the URL if it's not already there or removes it
      * otherwise.
      * @param name The name of the param.
@@ -293,9 +381,9 @@ export const useRouterParams = (options?: UseRouterParamsOptions) => {
         getParamValue,
         addParam,
         setParam,
-        setParams,
         clearParams,
         removeParam,
+        updateParams,
         toggleParam,
     };
 };
