@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { getCookie, setCookie } from "cookies-next";
 import { MantineProvider, ColorScheme } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
 import { useColorScheme } from "@mantine/hooks";
 import { appWithTranslation } from "next-i18next";
 import { Provider as ReactReduxProvider } from "react-redux";
@@ -113,6 +114,7 @@ const CustomApp = ({
                 })()}
             >
                 <RouterTransition />
+                <Notifications position="top-center" />
                 <Component {...props.pageProps} />
             </MantineProvider>
         </ReactReduxProvider>
