@@ -24,6 +24,7 @@
         "@mantine/notifications": "^6.0.13",
         "@mantine/nprogress": "^6.0.13",
         "@reduxjs/toolkit": "^1.9.5",
+        "async-mutex": "^0.4.0",
         "cookies-next": "^2.1.1",
         "embla-carousel": "^7.0.5",
         "embla-carousel-auto-height": "^7.0.5",
