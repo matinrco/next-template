@@ -11,6 +11,7 @@ import { Provider as ReactReduxProvider } from "react-redux";
 import { wrapper } from "src/services/store";
 import { getDirection } from "src/services/localeUtils";
 import { ltrEmotionCache, rtlEmotionCache } from "src/services/emotionCache";
+import { vazirmatn } from "src/services/fonts";
 import RouterTransition from "src/screens/shared/RouterTransition";
 import "src/services/global.scss";
 
@@ -41,20 +42,7 @@ const CustomApp = ({
                     fontFamily: (() => {
                         switch (direction) {
                             case "rtl":
-                                return `
-                            Vazirmatn,
-                            -apple-system, 
-                            BlinkMacSystemFont, 
-                            Segoe UI, 
-                            Roboto,Helvetica, 
-                            Arial, 
-                            Noto Sans, 
-                            sans-serif, 
-                            Apple Color Emoji,
-                            Segoe UI Emoji, 
-                            Segoe UI Symbol, 
-                            Noto Color Emoji
-                        `;
+                                return vazirmatn.style.fontFamily;
                             case "ltr":
                                 return `
                             -apple-system, 
