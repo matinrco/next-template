@@ -1,4 +1,24 @@
 import localFont from "next/font/local";
+import { Open_Sans } from "next/font/google";
+
+export const openSans = Open_Sans({
+    subsets: ["latin", "latin-ext"],
+    adjustFontFallback: false,
+    fallback: [
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Roboto",
+        "Helvetica",
+        "Arial",
+        "Noto Sans",
+        "sans-serif",
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji",
+    ],
+});
 
 export const vazirmatn = localFont({
     src: [
@@ -47,5 +67,20 @@ export const vazirmatn = localFont({
             style: "normal",
             weight: "900",
         },
+    ],
+    adjustFontFallback: false,
+    fallback: [
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Roboto",
+        "Helvetica",
+        "Arial",
+        "Noto Sans",
+        "sans-serif",
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji",
     ],
 });

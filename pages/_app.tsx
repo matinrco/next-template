@@ -11,7 +11,7 @@ import { Provider as ReactReduxProvider } from "react-redux";
 import { wrapper } from "src/services/store";
 import { getDirection } from "src/services/localeUtils";
 import { ltrEmotionCache, rtlEmotionCache } from "src/services/emotionCache";
-import { vazirmatn } from "src/services/fonts";
+import { vazirmatn, openSans } from "src/services/fonts";
 import RouterTransition from "src/screens/shared/RouterTransition";
 import "src/services/global.scss";
 
@@ -44,19 +44,7 @@ const CustomApp = ({
                             case "rtl":
                                 return vazirmatn.style.fontFamily;
                             case "ltr":
-                                return `
-                            -apple-system, 
-                            BlinkMacSystemFont, 
-                            Segoe UI, 
-                            Roboto,Helvetica, 
-                            Arial, 
-                            Noto Sans, 
-                            sans-serif, 
-                            Apple Color Emoji,
-                            Segoe UI Emoji, 
-                            Segoe UI Symbol, 
-                            Noto Color Emoji
-                        `;
+                                return openSans.style.fontFamily;
                         }
                     })(),
                     globalStyles: (theme) => ({
