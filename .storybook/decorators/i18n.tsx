@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { appWithTranslation } from "next-i18next";
 import type { StoryFn, StoryContext } from "@storybook/react";
-import { i18n } from "../next-i18next.config";
-import { getDirection } from "../src/services/localeUtils";
+import { i18n } from "../../next-i18next.config";
+import { getDirection } from "../../src/services/localeUtils";
 
 const resources: {
     [key: string]: { [key: string]: { [key: string]: string } };
@@ -39,7 +39,7 @@ const resources: {
 
         return localeAccumulator;
     }, {});
-})(require.context("../src/locales", true, /.*\.(json?)/));
+})(require.context("../../src/locales", true, /.*\.(json?)/));
 
 export default (Story: StoryFn, context: StoryContext) => {
     const [locale, setLocale] = useState(i18n.defaultLocale);
@@ -91,7 +91,7 @@ export default (Story: StoryFn, context: StoryContext) => {
             pageProps={{
                 _nextI18Next,
             }}
-            // wtf is these
+            // wtf are these 😐
             router={undefined as any}
             Component={undefined as any}
         />

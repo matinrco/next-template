@@ -1,8 +1,9 @@
 import type { Preview } from "@storybook/react";
-import { i18n } from "../next-i18next.config";
-import i18nDecorator from "./i18nDecorator";
+import { i18n as i18nConfig } from "../next-i18next.config";
+import i18nDecorator from "./decorators/i18n";
+import mantineDecorator from "./decorators/mantine";
 
-export const decorators = [i18nDecorator];
+export const decorators = [i18nDecorator, mantineDecorator];
 
 const preview: Preview = {
     parameters: {
@@ -18,10 +19,10 @@ const preview: Preview = {
         locale: {
             name: "Locale",
             description: "Internationalization locale",
-            defaultValue: i18n.defaultLocale,
+            defaultValue: i18nConfig.defaultLocale,
             toolbar: {
                 icon: "globe",
-                items: i18n.locales.map((locale) => ({
+                items: i18nConfig.locales.map((locale) => ({
                     value: locale,
                     title: locale.toUpperCase(),
                 })),
