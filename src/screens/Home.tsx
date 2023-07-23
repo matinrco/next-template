@@ -12,12 +12,14 @@ import {
     Box,
     Button,
     Center,
+    useMantineColorScheme,
 } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import DatePicker, {
     DayValue,
 } from "@hassanmojab/react-modern-calendar-datepicker";
 import { BsQuestionCircle } from "react-icons/bs";
+import { BiMoon, BiSun } from "react-icons/bi";
 import NoSSR from "src/screens/shared/NoSSR";
 import { useAppDispatch, useAppSelector } from "src/services/store";
 import { actions } from "src/services/slices/shared";
@@ -46,9 +48,19 @@ const Home = (): ReactElement => {
         fixedCacheKey: "create-foo",
     });
 
+    const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+
     return (
         <div>
             this is home
+            <hr />
+            <ActionIcon
+                variant="outline"
+                color={colorScheme === "dark" ? "yellow" : "blue"}
+                onClick={() => toggleColorScheme()}
+            >
+                {colorScheme === "dark" ? <BiSun /> : <BiMoon />}
+            </ActionIcon>
             <hr />
             <Container style={{ marginTop: 50, marginBottom: 50 }}>
                 <Grid mb="md">
