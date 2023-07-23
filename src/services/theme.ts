@@ -1,17 +1,16 @@
 import type { MantineThemeOverride, ColorScheme } from "@mantine/core";
 import { vazirmatn, openSans } from "./fonts";
 
-export const getTheme = ({
-    dir,
-    colorScheme,
-}: {
+type ThemeParams = {
     dir?: "ltr" | "rtl";
     colorScheme?: ColorScheme;
-}): MantineThemeOverride => ({
-    dir,
-    colorScheme,
+} | void;
+
+export const getTheme = (themeParams: ThemeParams): MantineThemeOverride => ({
+    dir: themeParams?.dir,
+    colorScheme: themeParams?.colorScheme,
     fontFamily: (() => {
-        switch (dir) {
+        switch (themeParams?.dir) {
             case "rtl":
                 return vazirmatn.style.fontFamily;
             case "ltr":
