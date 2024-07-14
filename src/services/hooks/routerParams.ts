@@ -42,8 +42,8 @@ export const useRouterParams = (options?: UseRouterParamsOptions) => {
         return !value
             ? value
             : Array.isArray(value)
-            ? value.map((el) => decodeURIComponent(el))
-            : decodeURIComponent(value);
+              ? value.map((el) => decodeURIComponent(el))
+              : decodeURIComponent(value);
     };
 
     /**
