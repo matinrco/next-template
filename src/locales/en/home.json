@@ -1,3 +1,0 @@
-{
-    "currentWeatherInCity": "Current weather in $t(common:{{city}}) is: {{weather}} °C"
-}
