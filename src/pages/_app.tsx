@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import { appWithTranslation } from "next-i18next";
 import { Provider as ReactReduxProvider } from "react-redux";
 import { wrapper } from "@/rtk/store";
-import "@/globals.css";
+import "@/global.css";
 
 const App = ({ Component, ...rest }: AppProps) => {
     const { store, props } = wrapper.useWrappedStore(rest);
