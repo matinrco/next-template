@@ -1,10 +1,10 @@
+import { FormEvent } from "react";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { useAppDispatch, useAppSelector } from "@/rtk/store";
 import { actions } from "@/rtk/slices/shared";
 import { api } from "@/rtk/query";
 import { useFixNumbers } from "@/hooks/fixNumbers";
-import { FormEvent } from "react";
 
 export const Root = () => {
     const { t } = useTranslation(["root", "common"]);
