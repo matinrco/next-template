@@ -1,8 +1,9 @@
 import type { PropsWithChildren } from "react";
 import dynamic from "next/dynamic";
 
-const NoSSR = ({ children }: PropsWithChildren) => <>{children}</>;
-
-export default dynamic(() => Promise.resolve(NoSSR), {
-    ssr: false,
-});
+export const NoSSR = dynamic(
+    () => Promise.resolve(({ children }: PropsWithChildren) => <>{children}</>),
+    {
+        ssr: false,
+    },
+);
