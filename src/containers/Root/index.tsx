@@ -3,7 +3,8 @@ import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { useAppDispatch, useAppSelector } from "@/rtk/store";
 import { actions } from "@/rtk/slices/shared";
-import { api } from "@/rtk/query";
+import { weatherApis } from "@/rtk/query/weather";
+import { postApis } from "@/rtk/query/post";
 import { useFixNumbers } from "@/hooks/fixNumbers";
 
 export const Root = () => {
@@ -17,9 +18,9 @@ export const Root = () => {
         data: weather,
         isFetching: isWeatherFetching,
         isUninitialized: isWeatherUninitialized,
-    } = api.useGetWeatherQuery({ city }, { skip: city.length === 0 });
+    } = weatherApis.useGetWeatherQuery({ city }, { skip: city.length === 0 });
 
-    const [createPost, { data: postData }] = api.useCreatePostMutation();
+    const [createPost, { data: postData }] = postApis.useCreatePostMutation();
 
     return (
         <>

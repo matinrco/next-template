@@ -1,5 +1,5 @@
 import { AppThunk } from "@/rtk/store";
-import { api } from "@/rtk/query";
+import { postApis } from "@/rtk/query/post";
 import { actions as sharedActions } from "../shared";
 import { State as SharedState } from "./state";
 
@@ -19,11 +19,13 @@ export const createPost =
         title,
         body,
         userId,
-    }: Parameters<typeof api.endpoints.createPost.initiate>[0]): AppThunk =>
+    }: Parameters<
+        typeof postApis.endpoints.createPost.initiate
+    >[0]): AppThunk =>
     async (dispatch, getState) => {
         try {
             const response = await dispatch(
-                api.endpoints.createPost.initiate(
+                postApis.endpoints.createPost.initiate(
                     { title, body, userId },
                     { fixedCacheKey: "create-post" },
                 ),
