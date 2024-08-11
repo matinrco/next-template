@@ -1,6 +1,6 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { wrapper } from "@/rtk/store";
-import { api } from "@/rtk/query";
+import { weatherApis } from "@/rtk/query/weather";
 import { actions } from "@/rtk/slices/shared";
 import { Root } from "@/containers/Root";
 
@@ -20,7 +20,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
             try {
                 const data = await store
                     .dispatch(
-                        api.endpoints.getWeather.initiate({
+                        weatherApis.endpoints.getWeather.initiate({
                             city,
                         }),
                     )
