@@ -5,11 +5,12 @@ import {
     SerializableStateInvariantMiddlewareOptions,
     createAction,
     UnknownAction,
+    combineSlices,
 } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { createWrapper, Context, HYDRATE } from "next-redux-wrapper";
 import { api } from "@/rtk/query";
-import { reducer as sharedReducer } from "./slices/shared";
+import { slice as sharedSlice } from "./slices/shared";
 
 interface ThunkOptions<E> {
     extraArgument: E;
@@ -21,12 +22,22 @@ interface DefaultMiddlewareOptions {
     serializableCheck?: boolean | SerializableStateInvariantMiddlewareOptions;
 }
 
-export const makeStore = (context: Context) =>
+/**
+ * we need to create APP_HYDRATE before calling combineSlices
+ * cuz we use APP_HYDRATE in slices
+ */
+export const APP_HYDRATE = createAction<RootState>(HYDRATE);
+
+export interface LazyLoadedSlices {}
+
+export const rootReducer = combineSlices(
+    api,
+    sharedSlice,
+).withLazyLoadedSlices<LazyLoadedSlices>();
+
+const makeStore = (context: Context) =>
     configureStore({
-        reducer: {
-            [api.reducerPath]: api.reducer,
-            shared: sharedReducer,
-        },
+        reducer: rootReducer,
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware<DefaultMiddlewareOptions>({
                 thunk: {
@@ -35,8 +46,8 @@ export const makeStore = (context: Context) =>
             }).concat(api.middleware),
     });
 
-export type AppStore = ReturnType<typeof makeStore>;
-export type AppDispatch = AppStore["dispatch"];
+type AppStore = ReturnType<typeof makeStore>;
+type AppDispatch = AppStore["dispatch"];
 export type RootState = ReturnType<AppStore["getState"]>;
 export type AppThunk<ReturnType = void> = ThunkAction<
     ReturnType,
@@ -44,8 +55,6 @@ export type AppThunk<ReturnType = void> = ThunkAction<
     unknown,
     UnknownAction
 >;
-
-export const APP_HYDRATE = createAction<RootState>(HYDRATE);
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch = () => useDispatch<AppDispatch>();

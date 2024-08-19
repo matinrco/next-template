@@ -4,17 +4,18 @@ import { initialState } from "./state";
 import * as reducers from "./reducers";
 import * as thunkActions from "./thunkActions";
 
-const sharedSlice = createSlice({
-    name: "shared",
+const sliceName = "shared";
+
+const slice = createSlice({
+    name: sliceName,
     initialState,
     reducers,
     extraReducers: (builder) => {
         builder.addCase(APP_HYDRATE, (state, action) => ({
             ...state,
-            ...action.payload.shared,
+            ...action.payload[sliceName],
         }));
     },
 });
 
-export const actions = { ...sharedSlice.actions, ...thunkActions };
-export const reducer = sharedSlice.reducer;
+export { slice, thunkActions };

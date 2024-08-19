@@ -2,14 +2,20 @@ import { FormEvent } from "react";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { useAppDispatch, useAppSelector } from "@/rtk/store";
-import { actions } from "@/rtk/slices/shared";
+import {
+    slice as sharedSlice,
+    thunkActions as sharedThunkActions,
+} from "@/rtk/slices/shared";
 import { weatherApis } from "@/rtk/query/weather";
 import { postApis } from "@/rtk/query/post";
 import { useFixNumbers } from "@/hooks/fixNumbers";
 
 export const Root = () => {
     const { t } = useTranslation(["root", "common"]);
-    const { increment, updateCity } = actions;
+    const { increment, updateCity } = {
+        ...sharedSlice.actions,
+        ...sharedThunkActions,
+    };
     const { counter, city } = useAppSelector((state) => state.shared);
     const dispatch = useAppDispatch();
     const fixNumbers = useFixNumbers();
