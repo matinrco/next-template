@@ -1,12 +1,11 @@
 import { AppThunk } from "@/rtk/store";
 import { postApis } from "@/rtk/query/post";
-import { actions as sharedActions } from "../shared";
-import { State as SharedState } from "./state";
+import { slice } from "./index";
 
 export const increment =
     (customValue?: number): AppThunk =>
     async (dispatch, getState) => {
-        const { updateCounter } = sharedActions;
+        const { updateCounter } = slice.actions;
         dispatch(
             updateCounter(
                 customValue ? customValue : getState().shared.counter + 1,
