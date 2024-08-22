@@ -1,4 +1,4 @@
-import _ from "lodash";
+import { mergeWith, isEqual } from "lodash";
 import { createSlice } from "@reduxjs/toolkit";
 import { APP_HYDRATE } from "@/rtk/store";
 import { initialState, State } from "./state";
@@ -43,13 +43,13 @@ const slice = createSlice({
          * This approach ensures a balance between preserving client-side state and applying server-side updates during SSR hydration.
          */
         builder.addCase(APP_HYDRATE, (state, action) =>
-            _.mergeWith(
+            mergeWith(
                 {},
                 state,
                 action.payload[sliceName],
                 (clientValue, serverValue, key: keyof State) => {
                     // check if the server value differs from the initial value
-                    if (!_.isEqual(serverValue, initialState[key])) {
+                    if (!isEqual(serverValue, initialState[key])) {
                         // if server value is different from initial state, merge it
                         return serverValue;
                     }
