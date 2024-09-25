@@ -3428,6 +3428,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mantine-form-zod-resolver@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "mantine-form-zod-resolver@npm:1.1.0"
+  peerDependencies:
+    "@mantine/form": ">=7.0.0"
+    zod: ">=3.0.0"
+  checksum: 10c0/3ff086f2a5d7b9d3d56b09f16fdc27919000c2007279c2e5e6fe85c60c56ee75a13cfebaa1dd341c4ddafd73aba9a3c59a98ea41c59ea8d01c67483dc07ea1ad
+  languageName: node
+  linkType: hard
+
 "markdown-it@npm:^14.0.0":
   version: 14.1.0
   resolution: "markdown-it@npm:14.1.0"
@@ -3639,6 +3649,7 @@ __metadata:
     i18next: "npm:^23.12.2"
     lint-staged: "npm:^15.2.8"
     lodash: "npm:^4.17.21"
+    mantine-form-zod-resolver: "npm:^1.1.0"
     next: "npm:14.2.5"
     next-i18next: "npm:^15.3.1"
     next-redux-wrapper: "npm:^8.1.0"
