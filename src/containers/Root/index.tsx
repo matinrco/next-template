@@ -41,11 +41,8 @@ export const Root = () => {
     const dispatch = useAppDispatch();
     const fixNumbers = useFixNumbers();
 
-    const {
-        data: weather,
-        isFetching: isWeatherFetching,
-        isUninitialized: isWeatherUninitialized,
-    } = weatherApis.useGetWeatherQuery({ city }, { skip: city.length === 0 });
+    const { data: weather, isFetching: isWeatherFetching } =
+        weatherApis.useGetWeatherQuery({ city }, { skip: city.length === 0 });
 
     const [createPost, { data: postData }] = postApis.useCreatePostMutation();
 
