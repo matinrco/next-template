@@ -3,5 +3,53 @@
         "next/core-web-vitals",
         "plugin:prettier/recommended",
         "prettier"
+    ],
+    "rules": {
+        "no-unused-vars": [
+            "error",
+            {
+                "vars": "all",
+                "args": "after-used",
+                "ignoreRestSiblings": true
+            }
+        ],
+        "import/no-default-export": "error",
+        "import/order": [
+            "error",
+            {
+                "groups": [
+                    "builtin",
+                    "external",
+                    "internal",
+                    "parent",
+                    "sibling",
+                    "index"
+                ],
+                // put css modules at last
+                "pathGroups": [
+                    {
+                        "pattern": "./*.module.css",
+                        "group": "index",
+                        "position": "after"
+                    }
+                ],
+                // prevent any new line between all imports
+                "newlines-between": "never",
+                "warnOnUnassignedImports": true
+            }
+        ]
+    },
+    "overrides": [
+        {
+            "rules": {
+                "import/no-default-export": "off"
+            },
+            "files": [
+                "src/pages/**/*.js",
+                "src/pages/**/*.jsx",
+                "src/pages/**/*.ts",
+                "src/pages/**/*.tsx"
+            ]
+        }
     ]
 }
