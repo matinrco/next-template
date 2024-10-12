@@ -7,16 +7,18 @@ import type {
 import { Mutex } from "async-mutex";
 import queryString from "query-string";
 import { Context } from "next-redux-wrapper";
+// eslint-disable-next-line no-unused-vars
 import router from "next/router";
 import { RootState } from "@/rtk/store";
+// eslint-disable-next-line no-unused-vars
 import { api } from "@/rtk/query";
 
 const mutex = new Mutex();
 
-const baseQuery = fetchBaseQuery({
+const genericBaseQuery = fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
     credentials: "include",
-    prepareHeaders: (headers, { getState, extra, endpoint }) => {
+    prepareHeaders: (headers, { getState, extra }) => {
         /**
          * you can modify headers here,
          */
@@ -62,7 +64,7 @@ const baseQuery = fetchBaseQuery({
  * do any action base on any api call & response
  * for example, you can handle authentication errors here or anything else
  */
-const customBaseQuery: BaseQueryFn<
+export const baseQuery: BaseQueryFn<
     string | FetchArgs,
     unknown,
     FetchBaseQueryError
@@ -77,7 +79,7 @@ const customBaseQuery: BaseQueryFn<
      * do the api call
      * its the main action & thats why we are here
      */
-    let result = await baseQuery(args, baseQueryApi, extraOptions);
+    let result = await genericBaseQuery(args, baseQueryApi, extraOptions);
 
     /**
      * handle unauthorized error
@@ -88,7 +90,7 @@ const customBaseQuery: BaseQueryFn<
             const release = await mutex.acquire();
 
             // you can do another api call
-            // const otherResult = await baseQuery(
+            // const otherResult = await genericBaseQuery(
             //     "/some-path",
             //     baseQueryApi,
             //     extraOptions,
@@ -111,12 +113,10 @@ const customBaseQuery: BaseQueryFn<
         } else {
             // wait until the mutex is available without locking it
             await mutex.waitForUnlock();
-            result = await baseQuery(args, baseQueryApi, extraOptions);
+            result = await genericBaseQuery(args, baseQueryApi, extraOptions);
         }
     }
 
     // pass the result
     return result;
 };
-
-export default customBaseQuery;

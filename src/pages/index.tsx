@@ -18,7 +18,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
             store.dispatch(updateCity(city));
 
             try {
-                const data = await store
+                await store
                     .dispatch(
                         weatherApis.endpoints.getWeather.initiate({
                             city,

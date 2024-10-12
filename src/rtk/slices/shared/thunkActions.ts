@@ -21,9 +21,9 @@ export const createPost =
     }: Parameters<
         typeof postApis.endpoints.createPost.initiate
     >[0]): AppThunk =>
-    async (dispatch, getState) => {
+    async (dispatch) => {
         try {
-            const response = await dispatch(
+            await dispatch(
                 postApis.endpoints.createPost.initiate(
                     { title, body, userId },
                     { fixedCacheKey: "create-post" },

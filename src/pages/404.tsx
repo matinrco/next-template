@@ -5,7 +5,7 @@ import { Error404 } from "@/containers/Error404";
 export default Error404;
 
 export const getStaticProps = wrapper.getStaticProps(
-    (store) =>
+    () =>
         async ({ locale }) => {
             return {
                 props: {
