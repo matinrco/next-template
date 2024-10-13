@@ -13,6 +13,13 @@
                 "ignoreRestSiblings": true
             }
         ],
+        // restrict any relative imports from parent directories
+        "no-restricted-imports": [
+            "error",
+            {
+                "patterns": ["../*"]
+            }
+        ],
         "import/no-default-export": "error",
         "import/order": [
             "error",
