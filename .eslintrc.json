@@ -20,7 +20,11 @@
                 "patterns": ["../*"]
             }
         ],
+        // force to use arrow function or function expression
+        "no-restricted-syntax": ["error", "FunctionDeclaration"],
+        // force to use named exports instead of default export
         "import/no-default-export": "error",
+        //
         "import/order": [
             "error",
             {
@@ -47,6 +51,7 @@
         ]
     },
     "overrides": [
+        // allow default exports in pages directory
         {
             "rules": {
                 "import/no-default-export": "off"
@@ -57,6 +62,13 @@
                 "src/pages/**/*.ts",
                 "src/pages/**/*.tsx"
             ]
+        },
+        // disable "no-unused-vars" for ts type files
+        {
+            "rules": {
+                "no-unused-vars": "off"
+            },
+            "files": ["*.d.ts"]
         }
     ]
 }
