@@ -1,3 +1,3 @@
-export interface GetWeatherReq {
+export type GetWeatherReq = {
     city: string;
-}
+};

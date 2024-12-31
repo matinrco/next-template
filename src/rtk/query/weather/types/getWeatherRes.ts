@@ -1,11 +1,11 @@
-export interface GetWeatherRes {
+export type GetWeatherRes = {
     current_condition: CurrentCondition[];
     nearest_area: NearestArea[];
     request: Request[];
     weather: Weather[];
-}
+};
 
-interface CurrentCondition {
+type CurrentCondition = {
     FeelsLikeC: string;
     FeelsLikeF: string;
     cloudcover: string;
@@ -28,17 +28,17 @@ interface CurrentCondition {
     winddirDegree: string;
     windspeedKmph: string;
     windspeedMiles: string;
-}
+};
 
-interface WeatherDesc {
+type WeatherDesc = {
     value: string;
-}
+};
 
-interface WeatherIconUrl {
+type WeatherIconUrl = {
     value: string;
-}
+};
 
-interface NearestArea {
+type NearestArea = {
     areaName: AreaName[];
     country: Country[];
     latitude: string;
@@ -46,30 +46,30 @@ interface NearestArea {
     population: string;
     region: Region[];
     weatherUrl: WeatherUrl[];
-}
+};
 
-interface AreaName {
+type AreaName = {
     value: string;
-}
+};
 
-interface Country {
+type Country = {
     value: string;
-}
+};
 
-interface Region {
+type Region = {
     value: string;
-}
+};
 
-interface WeatherUrl {
+type WeatherUrl = {
     value: string;
-}
+};
 
-interface Request {
+type Request = {
     query: string;
     type: string;
-}
+};
 
-interface Weather {
+type Weather = {
     astronomy: Astronomy[];
     avgtempC: string;
     avgtempF: string;
@@ -82,18 +82,18 @@ interface Weather {
     sunHour: string;
     totalSnow_cm: string;
     uvIndex: string;
-}
+};
 
-interface Astronomy {
+type Astronomy = {
     moon_illumination: string;
     moon_phase: string;
     moonrise: string;
     moonset: string;
     sunrise: string;
     sunset: string;
-}
+};
 
-interface Hourly {
+type Hourly = {
     DewPointC: string;
     DewPointF: string;
     FeelsLikeC: string;
@@ -133,12 +133,12 @@ interface Hourly {
     winddirDegree: string;
     windspeedKmph: string;
     windspeedMiles: string;
-}
+};
 
-interface WeatherDesc2 {
+type WeatherDesc2 = {
     value: string;
-}
+};
 
-interface WeatherIconUrl2 {
+type WeatherIconUrl2 = {
     value: string;
-}
+};

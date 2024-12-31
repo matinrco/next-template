@@ -1,8 +1,8 @@
-export interface GetPostsRes extends Array<Post> {}
+export type GetPostsRes = Array<Post>;
 
-interface Post {
+type Post = {
     userId: number;
     id: number;
     title: string;
     body: string;
-}
+};

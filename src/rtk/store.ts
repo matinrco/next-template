@@ -12,15 +12,15 @@ import { createWrapper, Context, HYDRATE } from "next-redux-wrapper";
 import { api } from "@/rtk/query";
 import { slice as sharedSlice } from "./slices/shared";
 
-interface ThunkOptions<E> {
+type ThunkOptions<E> = {
     extraArgument: E;
-}
+};
 
-interface DefaultMiddlewareOptions {
+type DefaultMiddlewareOptions = {
     thunk?: boolean | ThunkOptions<Context>;
     immutableCheck?: boolean | ImmutableStateInvariantMiddlewareOptions;
     serializableCheck?: boolean | SerializableStateInvariantMiddlewareOptions;
-}
+};
 
 /**
  * we need to create APP_HYDRATE before calling combineSlices
@@ -28,12 +28,7 @@ interface DefaultMiddlewareOptions {
  */
 export const APP_HYDRATE = createAction<RootState>(HYDRATE);
 
-export interface LazyLoadedSlices {}
-
-export const rootReducer = combineSlices(
-    api,
-    sharedSlice,
-).withLazyLoadedSlices<LazyLoadedSlices>();
+export const rootReducer = combineSlices(api, sharedSlice);
 
 const makeStore = (context: Context) =>
     configureStore({

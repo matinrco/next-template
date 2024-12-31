@@ -7,10 +7,10 @@ import type {
 import { Mutex } from "async-mutex";
 import queryString from "query-string";
 import { Context } from "next-redux-wrapper";
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import router from "next/router";
 import { RootState } from "@/rtk/store";
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { api } from "@/rtk/query";
 
 const mutex = new Mutex();

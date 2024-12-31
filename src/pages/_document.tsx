@@ -9,9 +9,9 @@ import Document, {
 import i18next from "i18next";
 
 class CustomDocument extends Document {
-    static async getInitialProps(
+    static getInitialProps = async (
         ctx: DocumentContext,
-    ): Promise<DocumentInitialProps> {
+    ): Promise<DocumentInitialProps> => {
         const originalRenderPage = ctx.renderPage;
 
         // Run the React rendering logic synchronously
@@ -27,9 +27,9 @@ class CustomDocument extends Document {
         const initialProps = await Document.getInitialProps(ctx);
 
         return initialProps;
-    }
+    };
 
-    render() {
+    render = () => {
         return (
             <Html dir={i18next.dir(this.props.locale)}>
                 <Head />
@@ -39,7 +39,7 @@ class CustomDocument extends Document {
                 </body>
             </Html>
         );
-    }
+    };
 }
 
 export default CustomDocument;

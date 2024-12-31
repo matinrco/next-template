@@ -1,3 +1,1 @@
-interface Req {}
-
-export type GetPostsReq = Req | void;
+export type GetPostsReq = void;
