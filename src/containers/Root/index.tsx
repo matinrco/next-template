@@ -1,6 +1,26 @@
-import { FormEvent } from "react";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
+import {
+    Box,
+    Stack,
+    Title,
+    Text,
+    Divider,
+    Space,
+    Select,
+    Alert,
+    Skeleton,
+    Group,
+    ActionIcon,
+    TextInput,
+    Textarea,
+    NumberInput,
+    Button,
+    Center,
+} from "@mantine/core";
+import { useForm } from "@mantine/form";
+import { CodeHighlight } from "@mantine/code-highlight";
+import { IconTemperature, IconPlus, IconMinus } from "@tabler/icons-react";
 import { useAppDispatch, useAppSelector } from "@/rtk/store";
 import {
     slice as sharedSlice,
@@ -12,7 +32,7 @@ import { useFixNumbers } from "@/hooks/fixNumbers";
 
 export const Root = () => {
     const { t } = useTranslation(["root", "common"]);
-    const { increment, updateCity } = {
+    const { increment, updateCity, updateCounter } = {
         ...sharedSlice.actions,
         ...sharedThunkActions,
     };
@@ -20,92 +40,147 @@ export const Root = () => {
     const dispatch = useAppDispatch();
     const fixNumbers = useFixNumbers();
 
-    const {
-        data: weather,
-        isFetching: isWeatherFetching,
-        isUninitialized: isWeatherUninitialized,
-    } = weatherApis.useGetWeatherQuery({ city }, { skip: city.length === 0 });
+    const { data: weather, isFetching: isWeatherFetching } =
+        weatherApis.useGetWeatherQuery({ city }, { skip: city.length === 0 });
 
     const [createPost, { data: postData }] = postApis.useCreatePostMutation();
+
+    const form = useForm({
+        initialValues: {
+            title: "",
+            userId: 0,
+            body: "",
+        },
+    });
 
     return (
         <>
             <Head>
                 <title>{t("title")}</title>
             </Head>
-            <div>
-                <h1>{t("title")}</h1>
-                <h2>{t("description")} &#58;&#41;</h2>
-                <h3>{t("author")}</h3>
-                <hr />
-                <div>
-                    <select
-                        onChange={({ target }) =>
-                            target.value.length !== 0 &&
-                            dispatch(updateCity(target.value))
-                        }
-                        value={city}
-                    >
-                        <option value="tehran">{t("common:tehran")}</option>
-                        <option value="isfahan">{t("common:isfahan")}</option>
-                        <option value="gilan">{t("common:gilan")}</option>
-                    </select>
-                    <p>
-                        {isWeatherFetching
-                            ? "⌛"
-                            : !isWeatherUninitialized &&
-                              t("currentWeatherInCity", {
-                                  replace: {
-                                      city,
-                                      weather: fixNumbers(
-                                          weather?.current_condition?.[0]
-                                              ?.temp_C || "---",
-                                      ),
-                                  },
-                              })}
-                    </p>
-                </div>
-                <hr />
-                <div>
-                    <button onClick={() => dispatch(increment())}>
-                        increment
-                    </button>
-                    <p>current value is: {counter}</p>
-                </div>
-                <hr />
-                {/* for sample mutation 👇 */}
-                <form
-                    onSubmit={(event: FormEvent<HTMLFormElement>) => {
-                        event.preventDefault();
-                        const formData = new FormData(event.currentTarget);
-                        const title = (formData.get("title") || "") as string;
-                        const userId = +(formData.get("userId") || 0);
-                        const body = (formData.get("body") || "") as string;
-
-                        createPost({ title, body, userId });
-                    }}
-                >
-                    <div>
-                        <input type="text" name="title" placeholder="title" />
-                    </div>
-                    <div>
-                        <input
-                            type="number"
-                            name="userId"
-                            placeholder="user id"
+            <Box mih="100vh">
+                <Space h="xl" />
+                <Stack my="xl">
+                    <Title ta="center" order={1}>
+                        {t("title")}
+                    </Title>
+                    <Title ta="center" order={4}>
+                        {t("description")} &#58;&#41;
+                    </Title>
+                    <Text ta="center">{t("author")}</Text>
+                </Stack>
+                <Box maw={800} mx="auto">
+                    <Divider my="xl" maw={800} variant="dashed" />
+                    <Stack maw={500} mx="auto">
+                        <Select
+                            label="View current temperature in your city"
+                            data={[
+                                { label: t("common:tehran"), value: "tehran" },
+                                {
+                                    label: t("common:isfahan"),
+                                    value: "isfahan",
+                                },
+                                { label: t("common:gilan"), value: "gilan" },
+                            ]}
+                            disabled={isWeatherFetching}
+                            onChange={(value) =>
+                                value && dispatch(updateCity(value))
+                            }
+                            value={city}
                         />
-                    </div>
-                    <div>
-                        <textarea name="body" placeholder="body"></textarea>
-                    </div>
-                    <div>
-                        <input type="submit" />
-                    </div>
-                </form>
-                {postData && (
-                    <pre dir="ltr">{JSON.stringify(postData, null, 4)}</pre>
-                )}
-            </div>
+                        {weather && (
+                            <Alert
+                                variant="light"
+                                color="teal"
+                                icon={<IconTemperature />}
+                                styles={{
+                                    body: {
+                                        justifyContent: "center",
+                                    },
+                                }}
+                            >
+                                {isWeatherFetching && (
+                                    <Skeleton height={12} radius="xl" />
+                                )}
+                                {!isWeatherFetching &&
+                                    t("currentWeatherInCity", {
+                                        replace: {
+                                            city,
+                                            weather: fixNumbers(
+                                                weather?.current_condition?.[0]
+                                                    ?.temp_C || "---",
+                                            ),
+                                        },
+                                    }) + "."}
+                            </Alert>
+                        )}
+                    </Stack>
+                    <Divider my="xl" maw={800} variant="dashed" />
+                    <Group justify="center">
+                        <ActionIcon
+                            variant="light"
+                            size="lg"
+                            color="red"
+                            onClick={() => {
+                                if (counter > 0) {
+                                    dispatch(updateCounter(counter - 1));
+                                }
+                            }}
+                        >
+                            <IconMinus />
+                        </ActionIcon>
+                        <Text>{counter}</Text>
+                        <ActionIcon
+                            variant="light"
+                            size="lg"
+                            color="teal"
+                            onClick={() => dispatch(increment())}
+                        >
+                            <IconPlus />
+                        </ActionIcon>
+                    </Group>
+                    <Divider my="xl" maw={800} variant="dashed" />
+                    <form
+                        onSubmit={form.onSubmit((values) => {
+                            createPost(values);
+                        })}
+                    >
+                        <Stack maw={500} mx="auto" gap="xs">
+                            <TextInput
+                                {...form.getInputProps("title")}
+                                label="Title"
+                            />
+                            <NumberInput
+                                {...form.getInputProps("userId")}
+                                label="User ID"
+                            />
+                            <Textarea
+                                {...form.getInputProps("body")}
+                                label="Body"
+                                // resize="vertical"
+                                // mih={200}
+                            />
+                            <Center>
+                                <Button
+                                    type="submit"
+                                    variant="light"
+                                    color="teal"
+                                    mt="xs"
+                                >
+                                    Submit
+                                </Button>
+                            </Center>
+                            {postData && (
+                                <CodeHighlight
+                                    code={JSON.stringify(postData, null, 4)}
+                                    language="json"
+                                />
+                            )}
+                        </Stack>
+                    </form>
+                    <Divider my="xl" maw={800} variant="dashed" />
+                </Box>
+            </Box>
         </>
     );
 };

@@ -7,6 +7,7 @@ import Document, {
     DocumentInitialProps,
 } from "next/document";
 import i18next from "i18next";
+import { ColorSchemeScript } from "@mantine/core";
 
 class CustomDocument extends Document {
     static getInitialProps = async (
@@ -32,7 +33,9 @@ class CustomDocument extends Document {
     render = () => {
         return (
             <Html dir={i18next.dir(this.props.locale)}>
-                <Head />
+                <Head>
+                    <ColorSchemeScript defaultColorScheme="light" />
+                </Head>
                 <body>
                     <Main />
                     <NextScript />
