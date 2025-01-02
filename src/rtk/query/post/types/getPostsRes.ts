@@ -1,4 +1,4 @@
-export type GetPostsRes = Array<Post>;
+export type GetPostsRes = Post[];
 
 type Post = {
     userId: number;
