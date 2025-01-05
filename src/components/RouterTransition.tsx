@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { ReactElement, useEffect } from "react";
 import { useRouter } from "next/router";
 import {
     startNavigationProgress,
@@ -6,7 +6,7 @@ import {
     resetNavigationProgress,
 } from "@mantine/nprogress";
 
-export const RouterTransition = (): React.ReactElement => {
+export const RouterTransition = (): ReactElement => {
     const router = useRouter();
 
     useEffect(() => {

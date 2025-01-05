@@ -29,6 +29,7 @@ import {
 import { weatherApis } from "@/rtk/query/weather";
 import { postApis } from "@/rtk/query/post";
 import { useFixNumbers } from "@/hooks/fixNumbers";
+import styles from "./index.module.css";
 
 export const Root = () => {
     const { t } = useTranslation(["root", "common"]);
@@ -58,7 +59,7 @@ export const Root = () => {
             <Head>
                 <title>{t("title")}</title>
             </Head>
-            <Box mih="100vh">
+            <Box mih="100vh" className={styles.container}>
                 <Space h="xl" />
                 <Stack my="xl">
                     <Title ta="center" order={1}>

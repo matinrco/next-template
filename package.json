@@ -7,7 +7,9 @@
         "build": "next build",
         "build-and-analyze": "cross-env ANALYZE=true next build",
         "start": "next start",
-        "lint": "next lint",
+        "lint": "concurrently 'yarn eslint' 'yarn stylelint'",
+        "eslint": "next lint",
+        "stylelint": "stylelint '**/*.{css,scss,sass}'",
         "type-check": "tsc --noEmit",
         "format": "prettier --write .",
         "postinstall": "husky"
@@ -30,6 +32,7 @@
         "@mantine/tiptap": "^7.15.2",
         "@reduxjs/toolkit": "^2.5.0",
         "@tabler/icons-react": "^3.26.0",
+        "@tiptap/core": "^2.11.0",
         "@tiptap/extension-link": "^2.11.0",
         "@tiptap/pm": "^2.11.0",
         "@tiptap/react": "^2.11.0",
@@ -56,6 +59,7 @@
         "@types/node": "^22.10.2",
         "@types/react": "^19.0.2",
         "@types/react-dom": "^19.0.2",
+        "concurrently": "^9.1.2",
         "cross-env": "^7.0.3",
         "eslint": "^9.17.0",
         "eslint-config-next": "^15.1.3",
@@ -67,6 +71,8 @@
         "postcss-preset-mantine": "^1.17.0",
         "postcss-simple-vars": "^7.0.1",
         "prettier": "^3.3.3",
+        "stylelint": "^16.12.0",
+        "stylelint-config-standard-scss": "^14.0.0",
         "typescript": "^5"
     },
     "packageManager": "yarn@4.6.0"

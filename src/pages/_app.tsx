@@ -1,13 +1,13 @@
 import type { AppProps } from "next/app";
+import { useRouter } from "next/router";
+import i18next from "i18next";
 import { appWithTranslation } from "next-i18next";
 import { Provider as ReactReduxProvider } from "react-redux";
 import { DirectionProvider, MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
-import { useRouter } from "next/router";
-import i18next from "i18next";
-import { wrapper } from "@/rtk/store";
 import { createTheme } from "@/utils/createTheme";
-import { RouterTransition } from "@/components/common/RouterTransition";
+import { wrapper } from "@/rtk/store";
+import { RouterTransition } from "@/components/RouterTransition";
 import "@/global.css";
 
 const App = ({ Component, ...rest }: AppProps) => {
@@ -18,8 +18,8 @@ const App = ({ Component, ...rest }: AppProps) => {
         <ReactReduxProvider store={store}>
             <DirectionProvider>
                 <MantineProvider
-                    theme={createTheme({ dir: i18next.dir(router.locale) })}
-                    defaultColorScheme="light"
+                    theme={createTheme({ dir: i18next.dir(router?.locale) })}
+                    defaultColorScheme="auto"
                 >
                     <RouterTransition />
                     <Notifications />
