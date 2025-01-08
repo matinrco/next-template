@@ -10,7 +10,7 @@ import { weatherApis } from "@/rtk/query/weather";
 import { postApis } from "@/rtk/query/post";
 import { useFixNumbers } from "@/hooks/fixNumbers";
 
-export const Root = () => {
+export const Page = () => {
     const { t } = useTranslation(["root", "common"]);
     const { increment, updateCity } = {
         ...sharedSlice.actions,
