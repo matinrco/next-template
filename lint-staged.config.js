@@ -13,4 +13,8 @@ module.exports = {
         `next lint --fix --file ${filenames
             .map((f) => path.relative(process.cwd(), f))
             .join(" --file ")}`,
+
+    // lint css/scss/sass files
+    "*.{css,scss,sass}": (filenames) =>
+        `stylelint ${filenames.join(" ")} --fix`,
 };
