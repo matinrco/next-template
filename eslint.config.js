@@ -66,10 +66,27 @@ module.exports = [
         },
     },
     {
-        // override to allow default exports in the pages directory
         files: ["src/pages/**/*.{js,jsx,ts,tsx}"],
         rules: {
+            // override to allow default exports in the pages directory
             "import/no-default-export": "off",
+            //
+            "no-restricted-imports": [
+                "error",
+                {
+                    patterns: [
+                        {
+                            regex: "^@/containers(?!.*/[Pp]age$).*",
+                            message:
+                                "any import from '@/containers/**' that doesn't end with 'page' is restrict",
+                        },
+                        {
+                            regex: "^@/containers(.*/[Pp]age$).*",
+                            allowImportNames: ["Page"],
+                        },
+                    ],
+                },
+            ],
         },
     },
     {

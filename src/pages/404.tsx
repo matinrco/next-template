@@ -1,8 +1,8 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { wrapper } from "@/rtk/store";
-import { Error404 } from "@/containers/Error404";
+import { Page as Error404Page } from "@/containers/error404/Page";
 
-export default Error404;
+export default Error404Page;
 
 export const getStaticProps = wrapper.getStaticProps(
     () =>

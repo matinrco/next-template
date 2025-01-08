@@ -31,7 +31,7 @@ import { postApis } from "@/rtk/query/post";
 import { useFixNumbers } from "@/hooks/fixNumbers";
 import styles from "./index.module.css";
 
-export const Root = () => {
+export const Page = () => {
     const { t } = useTranslation(["root", "common"]);
     const { increment, updateCity, updateCounter } = {
         ...sharedSlice.actions,
