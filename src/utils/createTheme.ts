@@ -8,7 +8,10 @@ type ThemeParams = {
 
 export const createTheme = (themeParams: ThemeParams) => {
     return mantineCreateTheme({
-        /** Put your mantine theme override here */
+        /**
+         * put your mantine theme override here
+         * to apply TS types check mantine.d.ts in project root.
+         */
         fontFamily: (() => {
             switch (themeParams?.dir) {
                 case "rtl":
@@ -17,5 +20,22 @@ export const createTheme = (themeParams: ThemeParams) => {
                     return opensans.style.fontFamily;
             }
         })(),
+        colors: {
+            /**
+             * you can also use generateColors() from @mantine/colors-generator
+             */
+            // brand: [
+            //     "#000000",
+            //     "#000000",
+            //     "#000000",
+            //     "#000000",
+            //     "#000000",
+            //     "#000000",
+            //     "#000000",
+            //     "#000000",
+            //     "#000000",
+            //     "#000000",
+            // ],
+        },
     });
 };
