@@ -1,0 +1,15 @@
+.genericDatePickerContainer {
+    display: block !important;
+}
+
+.genericDatePicker {
+    box-shadow: var(--mantine-shadow-md) !important;
+}
+
+.genericDatePickerArrow {
+    box-shadow: none !important;
+}
+
+.genericDatePickerArrow::after {
+    box-shadow: none !important;
+}

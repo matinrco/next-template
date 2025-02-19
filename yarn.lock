@@ -526,21 +526,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mantine/dates@npm:^7.16.2":
-  version: 7.16.2
-  resolution: "@mantine/dates@npm:7.16.2"
-  dependencies:
-    clsx: "npm:^2.1.1"
-  peerDependencies:
-    "@mantine/core": 7.16.2
-    "@mantine/hooks": 7.16.2
-    dayjs: ">=1.0.0"
-    react: ^18.x || ^19.x
-    react-dom: ^18.x || ^19.x
-  checksum: 10c0/4ecef21c80c0a394fd0611346c441a129b8504ed7b1ecb35864d8943c4cfde92722d25ab8a671ba3ecfef02fbb6a1508f86c62383de532008a83e812ba54390c
-  languageName: node
-  linkType: hard
-
 "@mantine/dropzone@npm:^7.16.2":
   version: 7.16.2
   resolution: "@mantine/dropzone@npm:7.16.2"
@@ -2255,13 +2240,6 @@ __metadata:
     es-errors: "npm:^1.3.0"
     is-data-view: "npm:^1.0.1"
   checksum: 10c0/fa7aa40078025b7810dcffc16df02c480573b7b53ef1205aa6a61533011005c1890e5ba17018c692ce7c900212b547262d33279fde801ad9843edc0863bf78c4
-  languageName: node
-  linkType: hard
-
-"dayjs@npm:^1.11.13":
-  version: 1.11.13
-  resolution: "dayjs@npm:1.11.13"
-  checksum: 10c0/a3caf6ac8363c7dade9d1ee797848ddcf25c1ace68d9fe8678ecf8ba0675825430de5d793672ec87b24a69bf04a1544b176547b2539982275d5542a7955f35b7
   languageName: node
   linkType: hard
 
@@ -4602,7 +4580,6 @@ __metadata:
     "@mantine/charts": "npm:^7.16.2"
     "@mantine/code-highlight": "npm:^7.16.2"
     "@mantine/core": "npm:^7.16.2"
-    "@mantine/dates": "npm:^7.16.2"
     "@mantine/dropzone": "npm:^7.16.2"
     "@mantine/form": "npm:^7.16.2"
     "@mantine/hooks": "npm:^7.16.2"
@@ -4627,7 +4604,6 @@ __metadata:
     clsx: "npm:^2.1.1"
     concurrently: "npm:^9.1.2"
     cross-env: "npm:^7.0.3"
-    dayjs: "npm:^1.11.13"
     embla-carousel-react: "npm:^7.1.0"
     eslint: "npm:^9.17.0"
     eslint-config-next: "npm:^15.1.3"
@@ -4648,6 +4624,7 @@ __metadata:
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
     react-i18next: "npm:^15.4.0"
+    react-multi-date-picker: "npm:^4.5.2"
     react-redux: "npm:^9.2.0"
     recharts: "npm:2"
     stylelint: "npm:^16.12.0"
@@ -5426,6 +5403,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-date-object@npm:^2.1.8":
+  version: 2.1.9
+  resolution: "react-date-object@npm:2.1.9"
+  checksum: 10c0/bcf39a1120c09b10ad9294ec5300c106ff9bdaf21f33584f22876ee1b1615efab894e69dd5317cfaa469b8b61b50d2178afd6baf496b6dd8a446337a9fbba3a8
+  languageName: node
+  linkType: hard
+
 "react-dom@npm:^19.0.0":
   version: 19.0.0
   resolution: "react-dom@npm:19.0.0"
@@ -5445,6 +5429,16 @@ __metadata:
   peerDependencies:
     react: ">= 16.8 || 18.0.0"
   checksum: 10c0/a82dce547746f29214fa396e4060930250dd1b5f15c81e761035a05a09a1354493a90f79c1125c6341aee4b6226444bc7c7d29fc54ad266c149dfff170ef47a9
+  languageName: node
+  linkType: hard
+
+"react-element-popper@npm:^2.1.6":
+  version: 2.1.7
+  resolution: "react-element-popper@npm:2.1.7"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10c0/da840daaf8829516b7c1646a76d92dd64e5f4dc73bf29afea00d6bd665235e7480305dae75572bc7b17802bccb1434166711b828e5c90a7d172160520ea61fcb
   languageName: node
   linkType: hard
 
@@ -5477,6 +5471,19 @@ __metadata:
   version: 18.3.1
   resolution: "react-is@npm:18.3.1"
   checksum: 10c0/f2f1e60010c683479e74c63f96b09fb41603527cd131a9959e2aee1e5a8b0caf270b365e5ca77d4a6b18aae659b60a86150bb3979073528877029b35aecd2072
+  languageName: node
+  linkType: hard
+
+"react-multi-date-picker@npm:^4.5.2":
+  version: 4.5.2
+  resolution: "react-multi-date-picker@npm:4.5.2"
+  dependencies:
+    react-date-object: "npm:^2.1.8"
+    react-element-popper: "npm:^2.1.6"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10c0/cb860dcb1b621bd33546b7e6fada6431b72ad3a0992916c39edac769fcde5fb6f8c541f6d8975b5768286b2fa43929a29659ad802852e31ef22ed2b16c164133
   languageName: node
   linkType: hard
 

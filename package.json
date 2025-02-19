@@ -21,7 +21,6 @@
         "@mantine/charts": "^7.16.2",
         "@mantine/code-highlight": "^7.16.2",
         "@mantine/core": "^7.16.2",
-        "@mantine/dates": "^7.16.2",
         "@mantine/dropzone": "^7.16.2",
         "@mantine/form": "^7.16.2",
         "@mantine/hooks": "^7.16.2",
@@ -39,7 +38,6 @@
         "@tiptap/starter-kit": "^2.11.3",
         "async-mutex": "^0.5.0",
         "clsx": "^2.1.1",
-        "dayjs": "^1.11.13",
         "embla-carousel-react": "^7.1.0",
         "i18next": "^24.2.0",
         "lodash": "^4.17.21",
@@ -50,6 +48,7 @@
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "react-i18next": "^15.4.0",
+        "react-multi-date-picker": "^4.5.2",
         "react-redux": "^9.2.0",
         "recharts": "2",
         "zod": "^3.24.1"

@@ -29,6 +29,7 @@ import {
 import { weatherApis } from "@/rtk/query/weather";
 import { postApis } from "@/rtk/query/post";
 import { useFixNumbers } from "@/hooks/fixNumbers";
+import { DatePicker } from "./DatePicker";
 import styles from "./index.module.css";
 
 export const Page = () => {
@@ -140,6 +141,10 @@ export const Page = () => {
                             <IconPlus />
                         </ActionIcon>
                     </Group>
+                    <Divider my="xl" maw={800} variant="dashed" />
+                    <Box maw={500} mx="auto">
+                        <DatePicker />
+                    </Box>
                     <Divider my="xl" maw={800} variant="dashed" />
                     <form
                         onSubmit={form.onSubmit((values) => {
