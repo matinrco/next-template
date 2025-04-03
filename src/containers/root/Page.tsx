@@ -1,4 +1,4 @@
-import { FormEvent } from "react";
+import type { FormEvent } from "react";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { useAppDispatch, useAppSelector } from "@/rtk/store";

@@ -1,14 +1,19 @@
 import {
+    type ThunkAction,
+    type UnknownAction,
+    type ActionCreatorInvariantMiddlewareOptions,
+    type ImmutableStateInvariantMiddlewareOptions,
+    type SerializableStateInvariantMiddlewareOptions,
     configureStore,
-    ThunkAction,
-    ImmutableStateInvariantMiddlewareOptions,
-    SerializableStateInvariantMiddlewareOptions,
     createAction,
-    UnknownAction,
     combineSlices,
 } from "@reduxjs/toolkit";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { createWrapper, Context, HYDRATE } from "next-redux-wrapper";
+import {
+    type TypedUseSelectorHook,
+    useDispatch,
+    useSelector,
+} from "react-redux";
+import { type Context, createWrapper, HYDRATE } from "next-redux-wrapper";
 import { api } from "@/rtk/query";
 import { slice as sharedSlice } from "./slices/shared";
 
@@ -20,6 +25,7 @@ type DefaultMiddlewareOptions = {
     thunk?: boolean | ThunkOptions<Context>;
     immutableCheck?: boolean | ImmutableStateInvariantMiddlewareOptions;
     serializableCheck?: boolean | SerializableStateInvariantMiddlewareOptions;
+    actionCreatorCheck?: boolean | ActionCreatorInvariantMiddlewareOptions;
 };
 
 /**

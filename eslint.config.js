@@ -36,6 +36,8 @@ module.exports = [
                     patterns: ["../*"],
                 },
             ],
+            // force to use "type" keyword while importing
+            "@typescript-eslint/consistent-type-imports": "error",
             // force to use named exports instead of default export
             "import/no-default-export": "error",
             //

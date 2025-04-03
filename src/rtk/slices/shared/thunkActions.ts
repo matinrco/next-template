@@ -1,4 +1,4 @@
-import { AppThunk } from "@/rtk/store";
+import type { AppThunk } from "@/rtk/store";
 import { postApis } from "@/rtk/query/post";
 import { slice } from "./index";
 
