@@ -30,6 +30,8 @@
         "react-dom": "^19.0.0",
         "react-i18next": "^15.4.0",
         "react-redux": "^9.2.0",
+        "redux": "^5.0.1",
+        "redux-persist": "^6.0.0",
         "zod": "^3.24.1"
     },
     "devDependencies": {

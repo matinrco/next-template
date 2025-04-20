@@ -1,5 +1,9 @@
 import {
+    type Tuple,
+    type EnhancedStore,
     type ThunkAction,
+    type StoreEnhancer,
+    type ThunkDispatch,
     type UnknownAction,
     type ActionCreatorInvariantMiddlewareOptions,
     type ImmutableStateInvariantMiddlewareOptions,
@@ -10,6 +14,7 @@ import {
 } from "@reduxjs/toolkit";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import { type Context, createWrapper, HYDRATE } from "next-redux-wrapper";
+import { persistStore } from "redux-persist";
 import { api } from "@/rtk/query";
 import { slice as sharedSlice } from "./slices/shared";
 
@@ -32,16 +37,53 @@ export const APP_HYDRATE = createAction<RootState>(HYDRATE);
 
 const reducer = combineSlices(api, sharedSlice);
 
-const makeStore = (context: Context) =>
-    configureStore({
+type StoreWithPersistor = EnhancedStore<
+    ReturnType<typeof reducer>,
+    UnknownAction,
+    Tuple<
+        [
+            StoreEnhancer<{
+                dispatch: ThunkDispatch<
+                    ReturnType<typeof reducer>,
+                    undefined,
+                    UnknownAction
+                >;
+            }>,
+            StoreEnhancer,
+        ]
+    >
+> & {
+    __persistor?: ReturnType<typeof persistStore>;
+};
+
+const makeStore = (context: Context): StoreWithPersistor => {
+    const store = configureStore({
         reducer,
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware<DefaultMiddlewareOptions>({
                 thunk: {
                     extraArgument: context,
                 },
+                serializableCheck: {
+                    ignoredActions: [
+                        "persist/PERSIST",
+                        "persist/REHYDRATE",
+                        "persist/REGISTER",
+                        "persist/PURGE",
+                        "persist/FLUSH",
+                        "persist/PAUSE",
+                    ],
+                },
             }).concat(api.middleware),
-    });
+    }) as StoreWithPersistor;
+
+    if (typeof window === "undefined") {
+        return store;
+    } else {
+        store.__persistor = persistStore(store); // nasty hack 💩
+        return store;
+    }
+};
 
 type AppStore = ReturnType<typeof makeStore>;
 type AppDispatch = AppStore["dispatch"];

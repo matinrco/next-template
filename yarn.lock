@@ -3725,6 +3725,8 @@ __metadata:
     react-dom: "npm:^19.0.0"
     react-i18next: "npm:^15.4.0"
     react-redux: "npm:^9.2.0"
+    redux: "npm:^5.0.1"
+    redux-persist: "npm:^6.0.0"
     stylelint: "npm:^16.12.0"
     stylelint-config-standard-scss: "npm:^14.0.0"
     typescript: "npm:^5"
@@ -4294,6 +4296,15 @@ __metadata:
   version: 19.0.0
   resolution: "react@npm:19.0.0"
   checksum: 10c0/9cad8f103e8e3a16d15cb18a0d8115d8bd9f9e1ce3420310aea381eb42aa0a4f812cf047bb5441349257a05fba8a291515691e3cb51267279b2d2c3253f38471
+  languageName: node
+  linkType: hard
+
+"redux-persist@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "redux-persist@npm:6.0.0"
+  peerDependencies:
+    redux: ">4.0.0"
+  checksum: 10c0/8242d265ab8d28bbc95cf2dc2a05b869eb67aa309b1ed08163c926f3af56dd8eb1ea62118286083461b8ef2024d3b349fd264e5a62a70eb2e74d068c832d5bf2
   languageName: node
   linkType: hard
 

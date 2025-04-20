@@ -1,6 +1,7 @@
 import { mergeWith, isEqual } from "lodash";
 import { createSlice } from "@reduxjs/toolkit";
 import { APP_HYDRATE } from "@/rtk/store";
+import { createPersistedSlice } from "@/utils/reduxPersist";
 import { type State, initialState } from "./state";
 import * as reducers from "./reducers";
 import * as thunkActions from "./thunkActions";
@@ -61,4 +62,6 @@ const slice = createSlice({
     },
 });
 
-export { slice, thunkActions };
+const persistedSlice = createPersistedSlice(slice, sliceName, initialState);
+
+export { persistedSlice as slice, thunkActions };
