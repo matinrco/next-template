@@ -1,10 +1,10 @@
 import Document, {
+    type DocumentContext,
+    type DocumentInitialProps,
     Html,
     Head,
     Main,
     NextScript,
-    DocumentContext,
-    DocumentInitialProps,
 } from "next/document";
 import i18next from "i18next";
 import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";

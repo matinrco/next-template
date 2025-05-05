@@ -1,5 +1,5 @@
-import { PayloadAction, Draft } from "@reduxjs/toolkit";
-import { State } from "./state";
+import type { PayloadAction, Draft } from "@reduxjs/toolkit";
+import type { State } from "./state";
 
 export const updateCounter = (
     state: Draft<State>,

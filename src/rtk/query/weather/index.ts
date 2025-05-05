@@ -1,5 +1,5 @@
 import { api } from "@/rtk/query";
-import { GetWeatherReq, GetWeatherRes } from "./types";
+import type { GetWeatherReq, GetWeatherRes } from "./types";
 
 export const weatherApis = api.injectEndpoints({
     endpoints: (builder) => ({

@@ -6,10 +6,10 @@ import type {
 } from "@reduxjs/toolkit/query";
 import { Mutex } from "async-mutex";
 import queryString from "query-string";
-import { Context } from "next-redux-wrapper";
+import type { Context } from "next-redux-wrapper";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import router from "next/router";
-import { RootState } from "@/rtk/store";
+import type { RootState } from "@/rtk/store";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { api } from "@/rtk/query";
 

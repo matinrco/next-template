@@ -1,7 +1,7 @@
 import { mergeWith, isEqual } from "lodash";
 import { createSlice } from "@reduxjs/toolkit";
 import { APP_HYDRATE } from "@/rtk/store";
-import { initialState, State } from "./state";
+import { type State, initialState } from "./state";
 import * as reducers from "./reducers";
 import * as thunkActions from "./thunkActions";
 

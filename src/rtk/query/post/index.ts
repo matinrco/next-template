@@ -1,5 +1,5 @@
 import { api } from "@/rtk/query";
-import {
+import type {
     CreatePostReq,
     CreatePostRes,
     GetPostsReq,

@@ -1,14 +1,15 @@
 import {
+    type ThunkAction,
+    type UnknownAction,
+    type ActionCreatorInvariantMiddlewareOptions,
+    type ImmutableStateInvariantMiddlewareOptions,
+    type SerializableStateInvariantMiddlewareOptions,
     configureStore,
-    ThunkAction,
-    ImmutableStateInvariantMiddlewareOptions,
-    SerializableStateInvariantMiddlewareOptions,
     createAction,
-    UnknownAction,
     combineSlices,
 } from "@reduxjs/toolkit";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { createWrapper, Context, HYDRATE } from "next-redux-wrapper";
+import { useDispatch, useSelector, useStore } from "react-redux";
+import { type Context, createWrapper, HYDRATE } from "next-redux-wrapper";
 import { api } from "@/rtk/query";
 import { slice as sharedSlice } from "./slices/shared";
 
@@ -20,6 +21,7 @@ type DefaultMiddlewareOptions = {
     thunk?: boolean | ThunkOptions<Context>;
     immutableCheck?: boolean | ImmutableStateInvariantMiddlewareOptions;
     serializableCheck?: boolean | SerializableStateInvariantMiddlewareOptions;
+    actionCreatorCheck?: boolean | ActionCreatorInvariantMiddlewareOptions;
 };
 
 /**
@@ -28,11 +30,11 @@ type DefaultMiddlewareOptions = {
  */
 export const APP_HYDRATE = createAction<RootState>(HYDRATE);
 
-export const rootReducer = combineSlices(api, sharedSlice);
+const reducer = combineSlices(api, sharedSlice);
 
 const makeStore = (context: Context) =>
     configureStore({
-        reducer: rootReducer,
+        reducer,
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware<DefaultMiddlewareOptions>({
                 thunk: {
@@ -51,9 +53,10 @@ export type AppThunk<ReturnType = void> = ThunkAction<
     UnknownAction
 >;
 
-// Use throughout your app instead of plain `useDispatch` and `useSelector`
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+// use throughout your app instead of plain `useDispatch` and `useSelector`
+export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
+export const useAppSelector = useSelector.withTypes<RootState>();
+export const useAppStore = useStore.withTypes<AppStore>();
 
 export const wrapper = createWrapper<AppStore>(makeStore, {
     debug: false,
