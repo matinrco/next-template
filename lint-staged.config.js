@@ -1,5 +1,3 @@
-const path = require("path");
-
 module.exports = {
     // type check ts files
     "*.{ts,tsx}": () => "tsc --noEmit",
@@ -10,9 +8,7 @@ module.exports = {
 
     // lint js/ts files
     "*.{js,jsx,ts,tsx}": (filenames) =>
-        `next lint --fix --file ${filenames
-            .map((f) => path.relative(process.cwd(), f))
-            .join(" --file ")}`,
+        `eslint --report-unused-disable-directives --max-warnings 0 --fix ${filenames.join(" ")}`,
 
     // lint css/scss/sass files
     "*.{css,scss,sass}": (filenames) =>
