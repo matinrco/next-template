@@ -107,4 +107,11 @@ module.exports = [
             "@typescript-eslint/no-require-imports": "off",
         },
     },
+    {
+        // override to allow type import in next-i18next.d.ts
+        files: ["next-i18next.d.ts"],
+        rules: {
+            "@typescript-eslint/consistent-type-imports": "off",
+        },
+    },
 ];
