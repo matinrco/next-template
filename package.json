@@ -8,7 +8,7 @@
         "build-and-analyze": "cross-env ANALYZE=true next build",
         "start": "next start",
         "lint": "concurrently 'yarn eslint' 'yarn stylelint'",
-        "eslint": "next lint",
+        "eslint": "eslint .",
         "stylelint": "stylelint '**/*.{css,scss,sass}'",
         "type-check": "tsc --noEmit",
         "format": "prettier --write .",
@@ -29,7 +29,7 @@
         "@mantine/nprogress": "^7.16.2",
         "@mantine/spotlight": "^7.16.2",
         "@mantine/tiptap": "^7.16.2",
-        "@reduxjs/toolkit": "^2.5.0",
+        "@reduxjs/toolkit": "^2.8.2",
         "@tabler/icons-react": "^3.29.0",
         "@tiptap/core": "^2.11.3",
         "@tiptap/extension-link": "^2.11.3",
@@ -41,7 +41,7 @@
         "embla-carousel-react": "^7.1.0",
         "i18next": "^24.2.0",
         "lodash": "^4.17.21",
-        "next": "^15.2.1",
+        "next": "^15.5.0",
         "next-i18next": "^15.4.1",
         "next-redux-wrapper": "^8.1.0",
         "query-string": "^9.1.0",
@@ -51,10 +51,10 @@
         "react-multi-date-picker": "^4.5.2",
         "react-redux": "^9.2.0",
         "recharts": "2",
-        "zod": "^3.24.1"
+        "zod": "~3.25.76"
     },
     "devDependencies": {
-        "@next/bundle-analyzer": "^15.2.1",
+        "@next/bundle-analyzer": "^15.5.0",
         "@types/lodash": "^4.17.7",
         "@types/node": "^22.10.2",
         "@types/react": "^19.0.2",
@@ -62,7 +62,7 @@
         "concurrently": "^9.1.2",
         "cross-env": "^7.0.3",
         "eslint": "^9.17.0",
-        "eslint-config-next": "^15.2.1",
+        "eslint-config-next": "^15.5.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-prettier": "^5.2.1",
         "husky": "^9.1.4",
@@ -75,5 +75,5 @@
         "stylelint-config-standard-scss": "^14.0.0",
         "typescript": "^5"
     },
-    "packageManager": "yarn@4.9.1"
+    "packageManager": "yarn@4.9.3"
 }

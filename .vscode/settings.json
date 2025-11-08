@@ -1,4 +1,16 @@
 {
+    "files.watcherExclude": {
+        "**/yarn.lock": true,
+        "**/yarn-*.cjs": true
+    },
+    "search.exclude": {
+        "**/yarn.lock": true,
+        "**/yarn-*.cjs": true
+    },
+    "files.readonlyInclude": {
+        "**/yarn.lock": true,
+        "**/yarn-*.cjs": true
+    },
     "typescript.tsdk": "node_modules/typescript/lib",
     "cssVariables.lookupFiles": [
         "**/*.css",

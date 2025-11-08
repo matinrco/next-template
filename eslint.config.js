@@ -12,6 +12,15 @@ module.exports = [
         "prettier",
     ),
     {
+        ignores: [
+            "node_modules/**",
+            ".next/**",
+            "out/**",
+            "build/**",
+            "next-env.d.ts",
+        ],
+    },
+    {
         // custom rules
         rules: {
             // force to use only arrow function

@@ -43,6 +43,7 @@ const slice = createSlice({
          * This approach ensures a balance between preserving client-side state and applying server-side updates during SSR hydration.
          */
         builder.addCase(APP_HYDRATE, (state, action) =>
+            // mergeWith(object, ...sources, customizer)
             mergeWith(
                 {},
                 state,

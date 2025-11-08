@@ -8,6 +8,7 @@ export const api = createApi({
     reducerPath: "api",
     tagTypes: ["Posts"],
     baseQuery,
+    // to prevent circular type issues, the return type needs to be annotated as any
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     extractRehydrationInfo: (action, { reducerPath }): any => {
         if (action.type === HYDRATE) {
