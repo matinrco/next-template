@@ -45,7 +45,8 @@ export const Page = () => {
     const { data: weather, isFetching: isWeatherFetching } =
         weatherApis.useGetWeatherQuery({ city }, { skip: city.length === 0 });
 
-    const [createPost, { data: postData }] = postApis.useCreatePostMutation();
+    const [createPost, { data: postData, isLoading: isCreatePostLoading }] =
+        postApis.useCreatePostMutation();
 
     const form = useForm({
         initialValues: {
@@ -172,6 +173,7 @@ export const Page = () => {
                                     variant="light"
                                     color="teal"
                                     mt="xs"
+                                    loading={isCreatePostLoading}
                                 >
                                     Submit
                                 </Button>
@@ -184,7 +186,8 @@ export const Page = () => {
                             )}
                         </Stack>
                     </form>
-                    <Divider my="xl" maw={800} variant="dashed" />
+                    <Divider maw={800} my="xl" variant="dashed" />
+                    <Space h="xs" />
                 </Box>
             </Box>
         </>
