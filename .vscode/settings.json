@@ -12,12 +12,12 @@
         "**/yarn-*.cjs": true
     },
     "typescript.tsdk": "node_modules/typescript/lib",
+    "cSpell.language": "en,fa-IR",
     "cssVariables.lookupFiles": [
         "**/*.css",
         "**/*.scss",
         "**/*.sass",
         "**/*.less",
         "node_modules/@mantine/core/styles.css"
-    ],
-    "cSpell.language": "en,fa-IR"
+    ]
 }
