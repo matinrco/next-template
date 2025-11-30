@@ -1,27 +1,18 @@
-const { FlatCompat } = require("@eslint/eslintrc");
+const pluginNextVitals = require("eslint-config-next/core-web-vitals");
+const pluginNextTs = require("eslint-config-next/typescript");
+const pluginPrettier = require("eslint-plugin-prettier/recommended");
+const pluginImport = require("eslint-plugin-import");
 
-const compat = new FlatCompat({
-    baseDirectory: __dirname,
-});
-
+/** @type {import('eslint').Linter.Config[]} */
 module.exports = [
-    ...compat.extends(
-        "next/core-web-vitals",
-        "next/typescript",
-        "plugin:prettier/recommended",
-        "prettier",
-    ),
-    {
-        ignores: [
-            "node_modules/**",
-            ".next/**",
-            "out/**",
-            "build/**",
-            "next-env.d.ts",
-        ],
-    },
+    ...pluginNextVitals,
+    ...pluginNextTs,
+    pluginPrettier,
     {
         // custom rules
+        plugins: {
+            import: pluginImport,
+        },
         rules: {
             // force to use only arrow function
             "no-restricted-syntax": [
