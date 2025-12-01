@@ -10,7 +10,8 @@ import {
 } from "@reduxjs/toolkit";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import { type Context, createWrapper, HYDRATE } from "next-redux-wrapper";
-import { api } from "@/rtk/query";
+import { slice as postApiSlice } from "./query/post/slice";
+import { slice as weatherApiSlice } from "./query/weather/slice";
 import { slice as sharedSlice } from "./slices/shared";
 
 type ThunkOptions<E> = {
@@ -30,7 +31,7 @@ type DefaultMiddlewareOptions = {
  */
 export const APP_HYDRATE = createAction<RootState>(HYDRATE);
 
-const reducer = combineSlices(api, sharedSlice);
+const reducer = combineSlices(postApiSlice, weatherApiSlice, sharedSlice);
 
 const makeStore = (context: Context) =>
     configureStore({
@@ -40,7 +41,7 @@ const makeStore = (context: Context) =>
                 thunk: {
                     extraArgument: context,
                 },
-            }).concat(api.middleware),
+            }).concat(postApiSlice.middleware, weatherApiSlice.middleware),
     });
 
 type AppStore = ReturnType<typeof makeStore>;

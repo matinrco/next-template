@@ -1,7 +1,7 @@
-import { api } from "@/rtk/query";
+import { slice } from "./slice";
 import type { GetWeatherReq, GetWeatherRes } from "./types";
 
-export const weatherApis = api.injectEndpoints({
+export const weatherApis = slice.injectEndpoints({
     endpoints: (builder) => ({
         getWeather: builder.query<GetWeatherRes, GetWeatherReq>({
             query: ({ city }) => ({
