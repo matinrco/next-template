@@ -22,7 +22,7 @@
         "clsx": "^2.1.1",
         "i18next": "^25.6.3",
         "lodash": "^4.17.21",
-        "next": "^16.0.5",
+        "next": "^16.0.6",
         "next-i18next": "^15.4.2",
         "next-redux-wrapper": "^8.1.0",
         "query-string": "^9.3.1",
@@ -33,7 +33,7 @@
         "zod": "~3.25.76"
     },
     "devDependencies": {
-        "@next/bundle-analyzer": "^16.0.5",
+        "@next/bundle-analyzer": "^16.0.6",
         "@types/lodash": "^4.17.7",
         "@types/node": "^24.10.1",
         "@types/react": "^19.2.7",
@@ -41,7 +41,7 @@
         "concurrently": "^9.1.2",
         "cross-env": "^7.0.3",
         "eslint": "^9.39.1",
-        "eslint-config-next": "^16.0.5",
+        "eslint-config-next": "^16.0.6",
         "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-prettier": "^5.5.4",
         "husky": "^9.1.7",
