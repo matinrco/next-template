@@ -1,12 +1,12 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { HYDRATE } from "next-redux-wrapper";
+import { baseQuery } from "@/rtk/query/baseQuery";
 import type { RootState } from "@/rtk/store";
-import { baseQuery } from "./baseQuery";
 
-export const api = createApi({
-    reducerPath: "api",
-    tagTypes: ["Posts"],
+export const slice = createApi({
+    reducerPath: "weatherApi",
+    tagTypes: [],
     baseQuery,
     // to prevent circular type issues, the return type needs to be annotated as any
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

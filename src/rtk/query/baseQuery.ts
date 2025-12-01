@@ -7,11 +7,9 @@ import type {
 import { Mutex } from "async-mutex";
 import queryString from "query-string";
 import type { Context } from "next-redux-wrapper";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import router from "next/router";
 import type { RootState } from "@/rtk/store";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { api } from "@/rtk/query";
+// import { api } from "@/rtk/query";
+import { isServer } from "@/utils/environment";
 
 const mutex = new Mutex();
 
@@ -28,7 +26,7 @@ const genericBaseQuery = fetchBaseQuery({
         /**
          * forward all client headers to api when fetching in server side
          */
-        if (typeof window === "undefined") {
+        if (isServer) {
             if (
                 "req" in context &&
                 context.req &&
@@ -50,7 +48,9 @@ const genericBaseQuery = fetchBaseQuery({
                     process.env.NEXT_PUBLIC_API_BASE_URL || "",
                 );
                 headers.set("host", apiBaseUrl.host);
-            } catch (error) {}
+            } catch (error) {
+                //
+            }
         }
 
         return headers;
